@@ -1,0 +1,31 @@
+# Bilingual-pair consistency record for personal-assistant-focus-layout.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/personal-assistant-focus-layout.md
+/personal-assistant-focus-and-task-section-interaction-design:
+  en: 431549bedfc8e21f
+  zh: b94f44a971b729d1
+/personal-assistant-focus-and-task-section-interaction-design/table-of-contents:
+  en: 23047cbf479b8d3d
+  zh: a07826334a94534a
+/personal-assistant-focus-and-task-section-interaction-design/scope-and-related-design:
+  en: f89d7478e4373492
+  zh: ab7521872df69f6f
+/personal-assistant-focus-and-task-section-interaction-design/current-focus-in-the-middle-column:
+  en: e06ba1384c6b12da
+  zh: da79328c87d9aa40
+/personal-assistant-focus-and-task-section-interaction-design/sidebar-information-order:
+  en: c7275dd5b2ef5547
+  zh: 48fd5aa2ef6f7fd5
+/personal-assistant-focus-and-task-section-interaction-design/wireframe:
+  en: 48d08c0e65a33d7e
+  zh: 86668663c86b067c
+/personal-assistant-focus-and-task-section-interaction-design/cards-and-state-specific-details:
+  en: e032cfdf7246804e
+  zh: 0eff5cf0c6a11a0f
+/personal-assistant-focus-and-task-section-interaction-design/interaction-adaptation-and-feedback:
+  en: 01b64429136dd76a
+  zh: 3bc708c65a34f2ee
+/personal-assistant-focus-and-task-section-interaction-design/ui-acceptance-and-scope-constraints:
+  en: 089f502be99752b0
+  zh: 1a2eb442be0c7157

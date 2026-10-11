@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for personal-assistant-tasks-todos-knowledge.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/personal-assistant-tasks-todos-knowledge.md
+/personal-assistant-tasks-todo-and-long-term-knowledge-design:
+  en: 4fde10785c89b70c
+  zh: d43215ac29733497
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/summary:
+  en: a7eeac5dab2e9529
+  zh: 6d259abcca5b3e8a
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/table-of-contents:
+  en: d0ff89835f5e417c
+  zh: 30c3544aae8d2475
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/scope-and-current-state:
+  en: bcde360712feb509
+  zh: 3594ecbc39f08085
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/layout-and-prototype:
+  en: 80c7a0e32c93f8ef
+  zh: 7d886d4ab48efe98
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/task-creation-and-execution-configuration:
+  en: ad27f5acbabccb46
+  zh: 4ab4b0b9e34e4d41
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/execution-sessions-and-status-reporting:
+  en: 240c36ba74b058c9
+  zh: 4120baa691b93c70
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/todo-and-task-conversion:
+  en: 5081fc07e84857d7
+  zh: 0d20e86e95c64e68
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/personal-ideas-and-markdown-knowledge:
+  en: e3606e7c5fc71a20
+  zh: aa8bfa993939ddaa
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/persistence-and-consistency:
+  en: bbc882b1ced8d4f5
+  zh: 39ddcef567a0b6f1
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/tool-and-interface-responsibilities:
+  en: d6f8aed1fcf8f987
+  zh: 97e25b49a2069239
+/personal-assistant-tasks-todo-and-long-term-knowledge-design/implementation-order-and-acceptance:
+  en: 4fc9f9ab5023c7b5
+  zh: d724606ae4568d86

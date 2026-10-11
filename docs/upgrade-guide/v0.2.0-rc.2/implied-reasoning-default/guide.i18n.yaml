@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for guide.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/upgrade-guide/v0.2.0-rc.2/implied-reasoning-default/guide.md
+/:
+  en: 1d7afbfcf5a82ca9
+  zh: 65e59d975150b2b9
+/reasoning-level-defaults-to-xhigh-or-high:
+  en: 2808f5d5e03d42d6
+  zh: 0578fba37427505f
+/reasoning-level-defaults-to-xhigh-or-high/change:
+  en: 1006fa02fd2e791d
+  zh: 3e9cefe551ca6f31
+/reasoning-level-defaults-to-xhigh-or-high/migration:
+  en: fb830ae59738dd00
+  zh: ef1b89dcabaab06c

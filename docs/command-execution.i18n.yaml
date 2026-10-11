@@ -1,0 +1,34 @@
+# Bilingual-pair consistency record for command-execution.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/command-execution.md
+/command-execution-and-feedback-standard:
+  en: 81d89a68b05c7e0c
+  zh: 3fd9795728f3173c
+/command-execution-and-feedback-standard/summary:
+  en: bcaa3ad6424d0dd5
+  zh: 58a04df334a2b154
+/command-execution-and-feedback-standard/table-of-contents:
+  en: 00adfe91fe5ea3af
+  zh: d0194f307e99ca5f
+/command-execution-and-feedback-standard/scope-and-output-modes:
+  en: 84f68d109dba6b97
+  zh: 6dbbc46f03afbb80
+/command-execution-and-feedback-standard/execution-and-waiting:
+  en: 4ddd95c63e505ad5
+  zh: 567f1efd29e3b164
+/command-execution-and-feedback-standard/success-expectations-and-summaries:
+  en: 5d43a19caa877dca
+  zh: 2d41eba5625cd023
+/command-execution-and-feedback-standard/failure-diagnostics-and-log-reads:
+  en: d2a6630ebcad47cb
+  zh: 84a446c65cde262f
+/command-execution-and-feedback-standard/log-retention-and-sensitive-information:
+  en: a65e808603612e93
+  zh: f9f5496b75849b4b
+/command-execution-and-feedback-standard/tool-responsibilities-and-current-entry-points:
+  en: 5a600c79c140274e
+  zh: 54862e621b30f754
+/command-execution-and-feedback-standard/execution-checklist:
+  en: f3647546762e3678
+  zh: c99a6b701f8afb5b

@@ -1,0 +1,43 @@
+# Bilingual-pair consistency record for end-to-end-plan.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/end-to-end-plan.md
+/main-engine-end-to-end-implementation-plan:
+  en: 25a12d7b8ff963f4
+  zh: f0e5ff613c2cd55f
+/main-engine-end-to-end-implementation-plan/summary:
+  en: 1c0ebf07941c6691
+  zh: 31acf5882938f619
+/main-engine-end-to-end-implementation-plan/contents:
+  en: f257efdf755fb348
+  zh: 2f2f474f577f6f14
+/main-engine-end-to-end-implementation-plan/baseline-source-findings:
+  en: 86f3a4d1d2e85e03
+  zh: d1686d4038a8988a
+/main-engine-end-to-end-implementation-plan/execution-and-parameters:
+  en: 2e6dcc72c490b0e8
+  zh: b526764bd4cce6b7
+/main-engine-end-to-end-implementation-plan/streaming-and-records:
+  en: ce1634da2af2d18c
+  zh: 0667438aded5ac17
+/main-engine-end-to-end-implementation-plan/authorization-and-cancellation:
+  en: 36da9c432c0d9e62
+  zh: 56a70d23c74ab204
+/main-engine-end-to-end-implementation-plan/recovery:
+  en: 88a9232aeeed381a
+  zh: 0ec1c5be71a318d8
+/main-engine-end-to-end-implementation-plan/implementation-packets:
+  en: 5621edb2c56a3a0e
+  zh: 0b1206d2d3f64a4e
+/main-engine-end-to-end-implementation-plan/acceptance-and-handoff:
+  en: ff9c545ccf4bf2e8
+  zh: ab12cdd02b54e3f8
+/main-engine-end-to-end-implementation-plan/sources-and-unresolved-version-facts:
+  en: 7d9598fdadd6b0fb
+  zh: 641f37c114121b82
+/main-engine-end-to-end-implementation-plan/dev-note:
+  en: 0bf5eed8e0c2329d
+  zh: 325b101aad247ecf
+/main-engine-end-to-end-implementation-plan/execution-projection:
+  en: d1fb3635b5119b64
+  zh: 376ad47eb351893d

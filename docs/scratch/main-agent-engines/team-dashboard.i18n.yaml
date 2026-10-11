@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for team-dashboard.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/team-dashboard.md
+/agent-team-dashboard-detailed-design:
+  en: 1ec4a875148a3849
+  zh: 002a37117ccf4489
+/agent-team-dashboard-detailed-design/summary:
+  en: d301601eb404d3cb
+  zh: 1f6616c493a2b175
+/agent-team-dashboard-detailed-design/contents:
+  en: a4d0a5d2958a94fa
+  zh: ffa58d0e20f3313c
+/agent-team-dashboard-detailed-design/current-implementation:
+  en: d4491a447750efb8
+  zh: a1773e41c4b48641
+/agent-team-dashboard-detailed-design/layout-and-navigation:
+  en: c4f8a6fc2527cb2a
+  zh: 25b11518053f4856
+/agent-team-dashboard-detailed-design/status-classification:
+  en: 40ff7b4d7490d91d
+  zh: 2b150006eded2389
+/agent-team-dashboard-detailed-design/data-and-subscriptions:
+  en: 20ce350d11dd9cad
+  zh: cc57de9987d6bd4d
+/agent-team-dashboard-detailed-design/failures-and-interaction:
+  en: 49cfb7a36ad7b2b1
+  zh: 8b614868676f51b5
+/agent-team-dashboard-detailed-design/implementation-ownership:
+  en: e574bc7f21ad838a
+  zh: 87018bcad9d4105e
+/agent-team-dashboard-detailed-design/delivery-and-acceptance:
+  en: 05a951141316ab8d
+  zh: 33c2ebec4eb9ca2b
+/agent-team-dashboard-detailed-design/dev-note:
+  en: dfbac8972023abbf
+  zh: 2ce2894dddd19f25

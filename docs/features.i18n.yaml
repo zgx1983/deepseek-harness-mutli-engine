@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for features.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/features.md
+/feature-list:
+  en: 15fec865c473495d
+  zh: 54bd97c21c07fd7b
+/feature-list/personal-assistant-plugin-project-dashboard:
+  en: 3d48395f3f39595c
+  zh: 67c4ede07c1b9d33
+/feature-list/session-archival-and-project-history:
+  en: 60d73f767b285185
+  zh: 393a8be847cbef07
+/feature-list/other-recent-ui-changes:
+  en: 138a5de6316badf1
+  zh: 143bf39f19913f75

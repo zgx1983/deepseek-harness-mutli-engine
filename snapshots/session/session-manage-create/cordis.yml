@@ -1,0 +1,16 @@
+# Session-manage scenario overlay: the model-facing session-management tools
+# plus the Host session and workspace services they call. This authored
+# scenario is keyless; the replay overlay mirrors these rows with llm-replay.
+
+- insert:
+    - id: workspace
+      name: '@deepseek-ai/dsh-workspace'
+
+    - id: session-controller
+      name: '@deepseek-ai/dsh-api-session-controller'
+
+    - id: tool-session-manage
+      name: '@deepseek-ai/dsh-tool-session-manage'
+
+    - id: session-manage-file-uploads
+      name: ./session-manage-host-services.mjs

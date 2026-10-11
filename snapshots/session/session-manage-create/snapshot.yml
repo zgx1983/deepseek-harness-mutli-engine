@@ -1,0 +1,11 @@
+version: 1
+scenario: session-manage-create
+profile: headless
+composition: session-manage
+recording: authored
+header:
+  class: session-manage
+  pin: true
+replay:
+  override: true
+platform: posix

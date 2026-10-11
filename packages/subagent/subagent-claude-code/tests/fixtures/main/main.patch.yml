@@ -1,0 +1,20 @@
+- id: headless-startup
+  disabled: true
+- id: headless-runner
+  disabled: true
+- id: llm-pi-ai
+  config:
+    providers:
+      acceptance:
+        api: anthropic-messages
+        apiKeyEnv: DSH_CLAUDE_ACCEPTANCE_KEY
+        baseURL: !!js process.env.DSH_CLAUDE_ACCEPTANCE_URL
+        claudeCodeURL: !!js process.env.DSH_CLAUDE_ACCEPTANCE_URL
+        models:
+          - id: !!js process.env.DSH_CLAUDE_ACCEPTANCE_MODEL
+- insert:
+    - id: main-engine-claude
+      name: '@deepseek-ai/dsh-subagent-claude-code/startup'
+      config:
+        startupTimeoutMs: 30000
+        interruptTimeoutMs: 10000

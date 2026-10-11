@@ -1,0 +1,4 @@
+- menu "模型与推理等级":
+  - menuitemradio "Off"
+  - menuitemradio "High" [checked]
+  - menuitemradio "Max"

@@ -1,0 +1,31 @@
+# Bilingual-pair consistency record for implementation-plan.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/implementation-plan.md
+/main-agent-engine-implementation-packets:
+  en: 6ed8d14957305302
+  zh: 44b85f71d0e2bdad
+/main-agent-engine-implementation-packets/summary:
+  en: fcc902a562bc4f36
+  zh: 071bc6b25aa6fb7d
+/main-agent-engine-implementation-packets/contents:
+  en: 45c77a3518cbfa71
+  zh: 6af2d304988d644c
+/main-agent-engine-implementation-packets/readiness-gates:
+  en: 1d42720c670d7965
+  zh: a139f0598646438a
+/main-agent-engine-implementation-packets/ordered-packets:
+  en: c428aaa2123ec09b
+  zh: ecd0650a16ce7f7b
+/main-agent-engine-implementation-packets/acceptance-matrix:
+  en: 22dc6ac7b987f3f8
+  zh: b56e50763e0ba72e
+/main-agent-engine-implementation-packets/implementer-handoff:
+  en: a378e7f6888fb796
+  zh: 722f306b621c8a11
+/main-agent-engine-implementation-packets/todo-provider-and-engine-reasoning-mappings:
+  en: 80a81cfad5c0c65c
+  zh: 832fa2a1fc8bed0a
+/main-agent-engine-implementation-packets/todo-codex-command-discovery-and-execution:
+  en: 09fd1276349a9b8e
+  zh: 45db42e3066193f3

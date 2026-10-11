@@ -1,0 +1,49 @@
+# Bilingual-pair consistency record for persistent-agent-teams.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/persistent-agent-teams.md
+/persistent-multi-engine-agent-teams-detailed-design:
+  en: e39a92c1bf0a9fc6
+  zh: d27895ba19e64033
+/persistent-multi-engine-agent-teams-detailed-design/summary:
+  en: ba3cc77635b674f9
+  zh: f3b2775e61696452
+/persistent-multi-engine-agent-teams-detailed-design/contents:
+  en: 0c329fe5ab838766
+  zh: af8cbd12011ff588
+/persistent-multi-engine-agent-teams-detailed-design/scope-and-current-gaps:
+  en: bd9705ba1e8375a4
+  zh: 164f3cfd18d86f77
+/persistent-multi-engine-agent-teams-detailed-design/execution-selection:
+  en: 9334e80ec9f68f93
+  zh: f6946852e978c400
+/persistent-multi-engine-agent-teams-detailed-design/execution-selection/alternatives:
+  en: 03d5ead4c2ba037a
+  zh: a0a5bc926a47a6f1
+/persistent-multi-engine-agent-teams-detailed-design/execution-selection/recommended-initial-interface:
+  en: c34aa1eb2906502c
+  zh: d0e8217014fe6a6c
+/persistent-multi-engine-agent-teams-detailed-design/member-lifecycle:
+  en: b841a142d2c875c5
+  zh: df2f5f3547f54a46
+/persistent-multi-engine-agent-teams-detailed-design/mailbox-and-scheduling:
+  en: 9036e14e88ab216d
+  zh: f0143a366bf96fc1
+/persistent-multi-engine-agent-teams-detailed-design/claude-integration:
+  en: b017405a72e2ebd1
+  zh: 82e237c18c126993
+/persistent-multi-engine-agent-teams-detailed-design/codex-integration:
+  en: f2f49400bcda767d
+  zh: d5a96df15872001c
+/persistent-multi-engine-agent-teams-detailed-design/shared-services-and-persistence:
+  en: 1690dcc9ac0aaf4d
+  zh: 42f2ff57f05461dc
+/persistent-multi-engine-agent-teams-detailed-design/engine-capabilities-outside-harness:
+  en: 7c71b6362bd5bee2
+  zh: d82c15991112b114
+/persistent-multi-engine-agent-teams-detailed-design/implementation-packets-and-acceptance:
+  en: 03a7a24fa508b310
+  zh: 6a93188e6e9dcc4b
+/persistent-multi-engine-agent-teams-detailed-design/references:
+  en: 06c55c2bd71866f4
+  zh: 0b5ddf9f74a1f8cc

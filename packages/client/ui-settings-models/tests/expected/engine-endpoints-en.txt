@@ -1,0 +1,15 @@
+{
+  "fields": [
+    {
+      "label": "Claude Code API URL",
+      "placeholder": "Not configured",
+      "value": ""
+    },
+    {
+      "label": "Codex API URL",
+      "placeholder": "Not configured",
+      "value": ""
+    }
+  ],
+  "text": "Claude Code API URLConfigure this URL to offer this provider to the engine. Uses the provider’s API key.Codex API URLConfigure this URL to offer this provider to the engine. Uses the provider’s API key."
+}

@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for overview.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/overview.md
+/pluggable-main-agent-engines:
+  en: 4f87a17c883670fa
+  zh: ccf60378f4fd5ebd
+/pluggable-main-agent-engines/summary:
+  en: e1472ffbfd899d58
+  zh: c3a39dcc8c1bf638
+/pluggable-main-agent-engines/contents:
+  en: 4d0096e348d60065
+  zh: 93fb9a07fede809a
+/pluggable-main-agent-engines/evidence:
+  en: a38cc5588fb0bce1
+  zh: b491292543f2cbea
+/pluggable-main-agent-engines/architecture:
+  en: 84ffc41655c5d04c
+  zh: 425c56c66428d0b7
+/pluggable-main-agent-engines/decisions:
+  en: e95bd8d4299e4e6b
+  zh: 0539348321d84687
+/pluggable-main-agent-engines/handoff:
+  en: c611aaca4ade05e0
+  zh: bab7488ef377f050

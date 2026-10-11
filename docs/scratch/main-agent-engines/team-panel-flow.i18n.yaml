@@ -1,0 +1,34 @@
+# Bilingual-pair consistency record for team-panel-flow.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/team-panel-flow.md
+/agent-team-panel-folding-and-task-dependency-graph-design:
+  en: c65833b438d079f8
+  zh: 89ad073a0de90b57
+/agent-team-panel-folding-and-task-dependency-graph-design/summary:
+  en: b583de7223426315
+  zh: e01d6590f5cb3af5
+/agent-team-panel-folding-and-task-dependency-graph-design/table-of-contents:
+  en: d2927587716cc83c
+  zh: 7dab1e70fab9f3e7
+/agent-team-panel-folding-and-task-dependency-graph-design/current-data-and-limitations:
+  en: 53a98efb0ad3639f
+  zh: 1420193dc52322dd
+/agent-team-panel-folding-and-task-dependency-graph-design/layout-and-folding:
+  en: 517b5b898122dafa
+  zh: be82b3dd25eff48b
+/agent-team-panel-folding-and-task-dependency-graph-design/task-dependencies-and-execution-flow-graph:
+  en: a571c0a440242037
+  zh: f277c92e61e68870
+/agent-team-panel-folding-and-task-dependency-graph-design/state-meanings-and-updates:
+  en: 06e4757490a2a26f
+  zh: 2a50bbfbcec0d9b2
+/agent-team-panel-folding-and-task-dependency-graph-design/implementation-scope-and-component-ownership:
+  en: 204b4af2c83a94e0
+  zh: 11e8e5f8faa97f01
+/agent-team-panel-folding-and-task-dependency-graph-design/acceptance-and-feature-status:
+  en: ef424d93751424a8
+  zh: b84b732b42a2a69f
+/agent-team-panel-folding-and-task-dependency-graph-design/dev-note:
+  en: e4596a6e0328a2e3
+  zh: ce582c07bf25b0ad

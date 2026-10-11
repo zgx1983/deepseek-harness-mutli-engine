@@ -1,0 +1,34 @@
+# Bilingual-pair consistency record for engine-commands.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/engine-commands.md
+/claude-codex-and-agent-team-command-support-plan:
+  en: 42f132b926b3fee5
+  zh: 6f8e366ac930f72e
+/claude-codex-and-agent-team-command-support-plan/summary:
+  en: f705b1bf53f1c764
+  zh: 66ef389f67361316
+/claude-codex-and-agent-team-command-support-plan/contents:
+  en: ba0b133ac6627728
+  zh: 42b86ec4463fb4bb
+/claude-codex-and-agent-team-command-support-plan/current-issues:
+  en: 0ab915f3ee9bd685
+  zh: 3333b17fcef9265e
+/claude-codex-and-agent-team-command-support-plan/engine-adapters:
+  en: 8b505ccfc148654e
+  zh: 095801b987bb54e2
+/claude-codex-and-agent-team-command-support-plan/engine-permission-configuration-initialization:
+  en: 9e9d6822ceae850d
+  zh: 75419e1f6351dea1
+/claude-codex-and-agent-team-command-support-plan/agent-team-child-sessions:
+  en: f34d6dcb4f495096
+  zh: fbbb93264de0436c
+/claude-codex-and-agent-team-command-support-plan/engine-mapping-for-the-three-permission-options:
+  en: 1227ee0b8dc9932d
+  zh: c4f9176552aa9b6e
+/claude-codex-and-agent-team-command-support-plan/delivery-and-acceptance:
+  en: 28c57857e2e83a10
+  zh: 226526da4e6ff750
+/claude-codex-and-agent-team-command-support-plan/dev-note:
+  en: 730f215af835d977
+  zh: efcd659b9efdb925

@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for guide.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/upgrade-guide/v0.2.0-rc.2/team-controlled-dispatch/guide.md
+/:
+  en: 2f057f220ff14d4f
+  zh: b7ef6debfdddd176
+/team-controlled-dispatch-and-no-wake-messaging:
+  en: acfeb601fc6d7102
+  zh: 3217ff9c0a4d32f3
+/team-controlled-dispatch-and-no-wake-messaging/change:
+  en: 251020f29107ff9b
+  zh: 86307f8f1159343a
+/team-controlled-dispatch-and-no-wake-messaging/migration:
+  en: 47d36ff5978ae86a
+  zh: cfd857187b76bfb9

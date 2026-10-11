@@ -1,0 +1,4 @@
+# Add the project and session usage dashboard to the browser application.
+- insert:
+    - id: personal-assistant
+      name: dsh-personal-assistant

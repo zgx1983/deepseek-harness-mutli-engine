@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能体沙箱与工具白名单调研 · deepseek-harness × OpenAI Codex 合并对比报告</title>
+<style>
+  :root{
+    --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --bg:#f8fafc; --card:#ffffff;
+    --dsh-bg:#eef2ff; --dsh-ink:#3730a3; --dsh-line:#c7d2fe;
+    --codex-bg:#fff7ed; --codex-ink:#9a3412; --codex-line:#fed7aa;
+    --accent:#4f46e5; --ok:#047857; --warn:#b45309; --bad:#b91c1c;
+    --code-bg:#0f172a; --code-ink:#e2e8f0;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.75 -apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px 96px}
+  header.hero{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#7c2d12 100%);color:#fff;padding:48px 24px 40px;margin-bottom:32px}
+  header.hero .wrap{padding-bottom:0}
+  h1{font-size:26px;line-height:1.4;margin:0 0 10px}
+  .hero p{color:#e0e7ff;margin:4px 0;font-size:14px}
+  .hero .badges span{display:inline-block;margin:10px 8px 0 0;padding:3px 10px;border-radius:999px;font-size:12px;background:rgba(255,255,255,.14)}
+  nav.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:28px;font-size:14px}
+  nav.toc b{display:block;margin-bottom:6px}
+  nav.toc a{color:var(--accent);text-decoration:none;margin-right:16px;white-space:nowrap;display:inline-block}
+  nav.toc a:hover{text-decoration:underline}
+  section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 30px;margin-bottom:26px}
+  h2{font-size:20px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--line)}
+  h2 .no{color:var(--accent);margin-right:8px}
+  h3{font-size:16px;margin:22px 0 8px}
+  p{margin:8px 0}
+  .muted{color:var(--muted);font-size:13px}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:#f1f5f9;border:1px solid var(--line);border-radius:4px;padding:1px 5px;word-break:break-all}
+  pre{background:var(--code-bg);color:var(--code-ink);border-radius:10px;padding:16px 18px;overflow-x:auto;font-size:12.5px;line-height:1.6}
+  pre code{background:none;border:none;color:inherit;padding:0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:8px 11px;vertical-align:top;text-align:left}
+  th{background:#f1f5f9;font-weight:600;white-space:nowrap}
+  td ul{margin:4px 0;padding-left:18px}
+  td li{margin:2px 0}
+  tr.category td{background:#eef2ff;font-weight:700;color:var(--dsh-ink)}
+  .tag{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+  .dsh{background:var(--dsh-bg);color:var(--dsh-ink);border:1px solid var(--dsh-line)}
+  .codex{background:var(--codex-bg);color:var(--codex-ink);border:1px solid var(--codex-line)}
+  .ok{color:var(--ok);font-weight:600}
+  .warn{color:var(--warn);font-weight:600}
+  .bad{color:var(--bad);font-weight:600}
+  .keypoint{border-left:4px solid var(--accent);background:#eef2ff50;padding:10px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .keypoint.warm{border-left-color:var(--warn);background:#fffbeb80}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:860px){.cols{grid-template-columns:1fr}}
+  .panel{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fcfcfd}
+  .panel h4{margin:0 0 8px;font-size:14px}
+  .panel.dsh{border-color:var(--dsh-line);background:var(--dsh-bg)}
+  .panel.codex{border-color:var(--codex-line);background:var(--codex-bg)}
+  .panel.dsh h4{color:var(--dsh-ink)}
+  .panel.codex h4{color:var(--codex-ink)}
+  .panel pre{font-size:11.5px;padding:12px 14px}
+  .checklist{list-style:none;padding-left:0}
+  .checklist li{padding-left:26px;position:relative;margin:6px 0}
+  .checklist li:before{content:"☐";position:absolute;left:2px;color:var(--accent)}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding-top:8px}
+  @media print{body{background:#fff}section{border:none;padding:10px 0}nav.toc{display:none}pre{white-space:pre-wrap}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>智能体沙箱隔离与工具白名单 · 合并对比调研报告</h1>
+    <p>对象 A：deepseek-harness（Cordis 全插件 TypeScript 智能体框架，branch <code style="background:none;border:none;color:#fef3c7">migrate-main-engines</code>，2026-10-05 工作树）</p>
+    <p>对象 B：codex-main（OpenAI Codex CLI，主体 <code style="background:none;border:none;color:#fef3c7">codex-rs/</code>，Rust，HEAD b8dceb0，2026-10-04）</p>
+    <p>主题：① 沙箱机制与会话隔离；② 工具白名单 / 权限控制（限制最终用户只能使用指定工具）</p>
+    <div class="badges">
+      <span>来源 1：research/sandbox-isolation-and-tool-restriction.zh.md</span>
+      <span>来源 2：codex-main/codex-tool-restriction-research.md</span>
+      <span>来源 3：codex-main/sandbox-security-analysis.md</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <b>目录</b>
+  <a href="#s1">1 执行摘要</a>
+  <a href="#s2">2 全景对比总表</a>
+  <a href="#s3">3 沙箱机制对比</a>
+  <a href="#s4">4 工具白名单对比</a>
+  <a href="#s5">5 专题深挖：文件隔离与 bash 逃逸</a>
+  <a href="#s6">6 合并推荐架构</a>
+  <a href="#s7">7 安全检查清单</a>
+  <a href="#s8">8 关键代码索引</a>
+  <a href="#s9">9 来源与基准</a>
+</nav>
+
+<!-- ============ 1 执行摘要 ============ -->
+<section id="s1">
+  <h2><span class="no">1</span>执行摘要</h2>
+  <p>两套系统是<strong>互补关系而非竞品</strong>：deepseek-harness（下称 <span class="tag dsh">DSH</span>）是「宿主框架」——以插件方式编排会话、工具、审批与执行引擎（可把 Claude Code / Codex 作为外部引擎嵌入）；codex-main（下称 <span class="tag codex">Codex</span>）是「执行核心」——自带沙箱、审批、工具注册表的 Rust 单体智能体。两边的调研结论在沙箱词汇上惊人地同构，在白名单原语的设计哲学上则方向相反：</p>
+  <div class="keypoint"><strong>① 沙箱词汇同构，默认哲学相反。</strong>两边都是 <code>read-only / workspace-write / danger-full-access</code> 三档。但 <span class="tag codex">Codex</span> 默认 <code>read-only</code>（受信任目录才升 workspace-write）且<strong>默认断网</strong>；<span class="tag dsh">DSH</span> 出厂默认 <code>workspace-write</code> 且<strong>沙箱不管网络</strong>——网络管控是 DSH 二次开发必须自行补的最大缺口。</div>
+  <div class="keypoint"><strong>② 白名单原语一硬一活，互不可替代。</strong><span class="tag codex">Codex</span> 的 <code>ToolPolicy</code> 是「启动上限」：宿主在 <code>StartThreadOptions</code> 注入，会话内一次性捕获、不可变、白名单外工具<strong>不进注册表也不进 tools 数组</strong>，运行期兜底报 <code>unsupported call</code>——最硬的白名单，但目前只是 Rust 进程内 API，app-server 协议与 TS/Python SDK 均未暴露。<span class="tag dsh">DSH</span> 的 <code>tools.restrict({allow/deny})</code> 是「运行时作用域过滤」：每 agent 作用域、链上交集、可见性=执行权、返回 disposer 可动态调整——更灵活但约束力以框架为界。</div>
+  <div class="keypoint"><strong>③ 可见性设计结论相反，值得对照记忆。</strong><span class="tag dsh">DSH</span> 把「可见」与「可执行」绑死为不变式；<span class="tag codex">Codex</span> 把曝光（<code>ToolExposure</code>，Deferred/Hidden 等）与执行解耦，并明确警告 <strong>exposure 不是安全边界</strong>（dispatch 不检查 exposure）。两边殊途同归：可见性手段都不能当权限边界，权限必须落在注册期或执行管线。</div>
+  <div class="keypoint"><strong>④ 共同缺口：都没有用户/租户身份体系。</strong>两边的策略状态都是 per-session / per-thread，没有 principal。最接近 per-user 动态下发的是 <span class="tag codex">Codex</span> 的「每线程注入 ToolPolicy」（per-thread feature 还有 gRPC 覆盖通道）与 <span class="tag dsh">DSH</span> 的「创建会话时选 Agent Preset」。</div>
+  <div class="keypoint warm"><strong>⑤ 推荐架构同构，可合并为统一五层模型。</strong>两边各自的推荐组合（Codex：ToolPolicy + MCP enabled_tools + sandbox/approval + hooks；DSH：Preset 组合 + tools.restrict + 权限预设 + guard/审批）逐层一一对应，见 §6；若以 Codex 为执行核、DSH 式框架为宿主，五层可完整拼合，唯一的协议级补丁是给 app-server <code>ThreadStartParams</code> 加 <code>tool_policy</code> 字段。</div>
+</section>
+
+<!-- ============ 2 全景对比 ============ -->
+<section id="s2">
+  <h2><span class="no">2</span>全景对比总表</h2>
+  <table>
+    <tr><th style="width:150px">维度</th><th><span class="tag dsh">deepseek-harness</span></th><th><span class="tag codex">codex-main（Codex CLI）</span></th></tr>
+    <tr class="category"><td colspan="3">沙箱与隔离</td></tr>
+    <tr><td>沙箱层级</td><td>宿主侧 argv 包裹 seam（<code>ctx.sandbox</code>）；引擎内命令依赖引擎原生沙箱</td><td>自研全栈：协议 → 策略 → 平台 runner，命令级套用</td></tr>
+    <tr><td>模式词汇</td><td colspan="2" style="text-align:center">完全同名同义：read-only / workspace-write / danger-full-access</td></tr>
+    <tr><td>默认值</td><td>包默认 read-only；出厂 dsh-base = <code>DSH_PERMISSION_MODE ?? workspace-write</code>；每会话 <code>/permission</code> 可切</td><td>默认 read-only；受信任目录自动升 workspace-write；管理端 requirements 可强制回退</td></tr>
+    <tr><td>网络</td><td class="bad">不受沙箱模式管理（明确边界，需自建）</td><td class="ok">默认断网（SBPL 网络策略 + seccomp；<code>[sandbox_workspace_write] network_access</code> 显式开）</td></tr>
+    <tr><td>macOS</td><td>Seatbelt（<code>sandbox-exec -p</code> 动态拼 SBPL：deny file-write* + 可写根）</td><td>Seatbelt（<code>seatbelt_base_policy.sbpl</code> + 网络策略模板编译拼装）</td></tr>
+    <tr><td>Linux</td><td>bwrap 优先（<code>--ro-bind / / --dev /dev --unshare-pid --proc /proc --die-with-parent</code> + tmpfs/bind 可写根）；备选 Landlock 原生 launcher（<code>native/landlock-run</code> 预编译二进制、禁止 env 指定、失败 exit 125、探测区分完整/旧 ABI）</td><td><code>codex-linux-sandbox</code> 助手 = bwrap + seccomp + no_new_privs；Landlock 已退化为 legacy 选项；WSL1 硬错误</td></tr>
+    <tr><td>Windows</td><td><code>CreateRestrictedToken</code> + 每 workspace/会话派生能力 SID + 私有临时目录；enforcement=partial</td><td>RestrictedToken / Mxc 两实现，Disabled|RestrictedToken|Elevated 三级 + 提权服务；Disabled 时 workspace-write <strong>自动降级 read-only</strong></td></tr>
+    <tr><td>防篡改特判</td><td class="bad">无（workspace 整体可写）</td><td class="ok">可写根下 <code>.git/.agents/.codex/.aws</code> 强制只读</td></tr>
+    <tr><td>fail-closed</td><td>后端不可用抛 <code>SANDBOX_UNAVAILABLE</code> 拒绝裸跑；runner 故障与策略拒绝按签名分类</td><td>平台能力缺失报错不裸跑（SeatbeltUnavailable / MissingLinuxSandboxExecutable / WSL1）；Windows Disabled 降级不裸跑</td></tr>
+    <tr><td>越权升级</td><td><code>approveEscalation</code>：仅相邻更宽模式、唯一授权 allowed-once、审计对强制在 turn 内</td><td><code>require_escalated</code> 批准后<strong>第一次尝试完全绕过沙箱</strong>；失败重试询问；ApprovedForSession 缓存 + execpolicy 修正；macOS unix socket 审批闭环</td></tr>
+    <tr class="category"><td colspan="3">工具白名单与权限</td></tr>
+    <tr><td>白名单原语</td><td><code>tools.restrict({allow/deny})</code>：运行时、每 agent 作用域、交集、可动态解除</td><td><code>ToolPolicy.allowed_tools</code>：线程启动注入、一次性捕获、不可放宽、注册期过滤</td></tr>
+    <tr><td>未授权工具的表现</td><td>不进 prompt schema，派发报 <code>UNKNOWN_TOOL</code>（可见性=执行权不变式）</td><td>不进注册表与 tools 数组，调用报 <code>unsupported call</code>（双保险）</td></tr>
+    <tr><td>可见性原语的安全定性</td><td>可见性与执行绑定，无独立 exposure 概念</td><td><code>ToolExposure</code>（Deferred/Hidden…）<strong>不是安全边界</strong>：dispatch 不检查 exposure</td></tr>
+    <tr><td>MCP 管控</td><td><code>mcp__server__tool</code> 命名 + 注册冲突回滚；无 per-tool 配置，靠 restrict / 组合</td><td class="ok">原生 per-server <code>enabled_tools/disabled_tools</code> + per-tool <code>approval_mode</code> + <code>omit_tools_from</code> + AppToolPolicy</td></tr>
+    <tr><td>调用拦截 hook</td><td><code>tools/pre-execute</code> 瀑布（allow/deny/cancel/ask，进程内类型化插件）+ 单调 <code>tools.guard</code> + <code>post-execute</code> block</td><td>PreToolUse / PostToolUse hooks（config 文件 + 外部脚本，可阻断/改写入参/拒结果）</td></tr>
+    <tr><td>审批</td><td><code>ctx.approval</code>：ask/never，never 在服务内先决，唯一授权 allowed-once，审计事件对强制在 turn 内</td><td><code>approval_policy</code>：untrusted/on-request/granular/never；会话级批准缓存；可由审查 agent 代审（approvals_reviewer）</td></tr>
+    <tr><td>组合层（决定工具面）</td><td>Agent Preset：插件行装载即注册，未注册即不存在；会话创建选 preset，首消息后锁定</td><td><code>[features]</code> / <code>[profiles]</code> / per-thread feature gRPC 覆盖；粒度粗（枚举逐项关，apply_patch 无开关）</td></tr>
+    <tr><td>协议/SDK 暴露</td><td>会话创建即带 preset / 权限预设（Remote API 完整）</td><td class="warn">ToolPolicy 未穿透 app-server 协议与 TS/Python SDK（嵌入 core-api 则零改动）</td></tr>
+    <tr><td>用户/租户体系</td><td colspan="2" style="text-align:center" class="bad">均无 principal；最接近的是 Codex「每线程注入 ToolPolicy」与 DSH「每会话选 Preset」</td></tr>
+    <tr><td>Prompt 约束定性</td><td colspan="2" style="text-align:center">一致：软约束，<strong>绝不能作为权限边界</strong></td></tr>
+  </table>
+</section>
+
+<!-- ============ 3 沙箱对比 ============ -->
+<section id="s3">
+  <h2><span class="no">3</span>沙箱机制对比</h2>
+
+  <h3>3.1 策略状态与解析时机</h3>
+  <div class="cols">
+    <div class="panel dsh"><h4><span class="tag dsh">DSH</span> 会话日志 + 逐调用解析</h4>
+      <p>模式/审批/预设都是 log-only 会话事件（<code>sandbox/mode</code>、<code>approval/policy</code>、<code>permission/preset</code>），投影折叠出当前值；执行器每次调用 <code>sandboxPolicy.resolve({session})</code>：已批准覆盖 → 会话事件 → 部署默认。可写根 = 会话 cwd；策略渲染进系统提示（sandbox:policy）。</p>
+      <p class="muted">sandbox-policy/src/index.ts:133-171、session-mode.ts:33-55</p></div>
+    <div class="panel codex"><h4><span class="tag codex">Codex</span> 会话/回合选定 + 逐命令套用</h4>
+      <p>策略存于 <code>CodexThreadSettingsOverrides</code> 与 <code>Session.permission_profile_state</code>；每个工具调用经 <code>ToolOrchestrator::run</code> 重新读策略挑 <code>SandboxType</code>。默认值解析链：CLI/config 覆盖 → 信任目录升级 → read-only 兜底；正在从 SandboxPolicy 枚举迁移到「文件系统 × 网络」双维 PermissionProfile。</p>
+      <p class="muted">codex_thread.rs:148、session.rs:182、orchestrator.rs:125、config_toml.rs:842</p></div>
+  </div>
+
+  <h3>3.2 平台实现逐项对比</h3>
+  <table>
+    <tr><th style="width:90px">平台</th><th><span class="tag dsh">DSH</span></th><th><span class="tag codex">Codex</span></th><th style="width:200px">要点差异</th></tr>
+    <tr><td>macOS</td><td><code>sandbox-exec -p</code> + 动态 SBPL：<code>(allow default)(deny file-write*)</code> + 允许 /dev/null 与可写根（profiles.ts:51-58）；唯一候选不探测</td><td><code>/usr/bin/sandbox-exec</code> 前缀 + 基础策略与<strong>网络策略</strong>模板按需编译（seatbelt.rs:21）</td><td>Codex 的 SBPL 含网络拦截；DSH 不涉网络</td></tr>
+    <tr><td>Linux</td><td>bwrap 优先（<code>--ro-bind / / --dev /dev --unshare-pid --proc /proc --die-with-parent</code> + tmpfs/bind 可写根）；备选 Landlock 原生 launcher（<code>native/landlock-run</code> 预编译二进制、禁止 env 指定、失败 exit 125、探测区分完整/旧 ABI）</td><td><code>codex-linux-sandbox</code> 助手 = bwrap + <strong>seccomp + no_new_privs</strong>；Landlock 退化为 <code>--use-legacy-landlock</code>；WSL1 直接硬错误；Ubuntu 24.04 需 AppArmor profile</td><td>Codex 多一层 seccomp 系统调用过滤；DSH 的 Landlock 是独立预编译产物、契约更工程化</td></tr>
+    <tr><td>Windows</td><td><code>CreateRestrictedToken</code>（koffi FFI）+ 派生能力 SID（workspace 哈希 SID + 每会话随机私有 tmp 目录与 SID）+ <code>CreateProcessAsUserW</code>；runner 失败必须 exit 127 拒绝生成子进程；enforcement 报 partial（硬链接别名、读不受限）</td><td><code>WindowsRestrictedToken</code> / <code>WindowsMxc</code>；Disabled|RestrictedToken|Elevated 三级，Elevated 借提权服务 <code>windows-sandbox-service</code>；Disabled 时 workspace-write 自动降 read-only</td><td>两者同属受限令牌路线；Codex 多提权服务与「降级不裸跑」策略，DSH 多每会话私有 SID 粒度</td></tr>
+    <tr><td>可写根</td><td><code>writableRoots()</code> = 规范化的 workspace + /tmp + os.tmpdir()，Seatbelt 与进程内 fs 围栏共享同一计算（roots.ts:30-55）</td><td>cwd + /tmp + $TMPDIR，可用 exclude 配置剔除；<strong>可写根下 .git/.agents/.codex/.aws 强制只读</strong>（permissions.rs:40）</td><td>Codex 有版本控制/agent 配置防篡改特判，DSH 没有</td></tr>
+  </table>
+
+  <h3>3.3 默认值与网络（最大分歧点）</h3>
+  <div class="keypoint warm">
+    <strong>网络：</strong><span class="tag codex">Codex</span> 把网络做成策略维度——默认 <code>CODEX_SANDBOX_NETWORK_DISABLED=1</code>，Seatbelt/SBPL 与 seccomp 双侧拦截，需 <code>[sandbox_workspace_write] network_access = true</code> 显式开启；且存在「managed network 要求时强制上沙箱」的唯一强制情形。<span class="tag dsh">DSH</span> 的三档模式<strong>只约束文件副作用</strong>（sandbox/src/index.ts:24-30），网络完全不在模型内。二次开发若基于 DSH，网络管控（代理/防火墙/禁 web 工具）必须另行设计；若基于 Codex 则开箱即得。
+  </div>
+  <table>
+    <tr><th></th><th><span class="tag dsh">DSH</span></th><th><span class="tag codex">Codex</span></th></tr>
+    <tr><td>未配置时的落点</td><td>dsh-base：<code>DSH_PERMISSION_MODE ?? workspace-write</code></td><td>read-only；受信任目录自动 workspace-write</td></tr>
+    <tr><td>用户可见的切换面</td><td><code>/permission</code> 命令 / 客户端下拉（写 permission/preset + 两旋钮事件）</td><td>config / CLI 参数 / slash 命令；approval 与 sandbox 独立旋钮</td></tr>
+    <tr><td>默认网络</td><td class="bad">不限制</td><td class="ok">禁用（显式开启才放行）</td></tr>
+    <tr><td>引擎内命令</td><td>由引擎原生沙箱负责（Claude SDK sandbox / Codex 原生沙箱），DSH 只做参数映射；DSH 审批不能推翻引擎原生 deny</td><td>即本体的沙箱体系</td></tr>
+  </table>
+
+  <h3>3.4 旁路条件对比</h3>
+  <p><span class="tag codex">Codex</span> 报告归纳了 6 类合法旁路：① 显式 danger-full-access / <code>--yolo</code>；② 声明外部沙箱（ExternalSandbox，无容器嗅探，只能显式配）；③ 平台能力缺失（报错而非裸跑，Windows 走降级）；④ 审批通过的单命令豁免（第一次尝试不进沙箱）；⑤ 拦截后同意重试；⑥ 反向特例——managed network 要求时强制上沙箱。框架的哲学是<strong>把所有旁路收敛到「显式配置或用户批准」两个关口</strong>。</p>
+  <p><span class="tag dsh">DSH</span> 的旁路面窄得多：<code>danger-full-access</code> 档直通本地执行；<code>bash-local/pwsh-local</code> 不隔离执行器（换装即失去沙箱，属于部署选择）；引擎内命令走引擎原生沙箱与引擎自身的旁路规则。沙箱后端缺失时没有「降级」只有 fail closed。二次开发建议沿用 DSH 的窄旁路面 + Codex 的「旁路全部显式化」审计思路。</p>
+
+  <h3>3.5 越权升级与审批配合</h3>
+  <table>
+    <tr><th style="width:170px">环节</th><th><span class="tag dsh">DSH</span></th><th><span class="tag codex">Codex</span></th></tr>
+    <tr><td>请求升级</td><td>模型在工具参数里声明 <code>sandbox_permissions</code>；工具层先经 <code>approveEscalation</code> 审批再执行（tool-bash/src/index.ts:236-256）</td><td>模型对单命令声明 <code>require_escalated</code>（shell_spec.rs:232）</td></tr>
+    <tr><td>批准后的执行</td><td>仍在 DSH 受控路径：允许相邻更宽模式，唯一授权 allowed-once，审计对必须落在开启的 turn 内，abort 即取消</td><td class="warn">第一次尝试<strong>完全绕过沙箱</strong>（BypassSandboxFirstAttempt）；若策略含 deny-read 则改为沙箱内放宽（EscalatedSandboxWithRestrictions）</td></tr>
+    <tr><td>拦截后重试</td><td>拒绝结果带 <code>[sandbox: file access denied under &lt;mode&gt; mode]</code> 与升级提示标记，由模型再走审批</td><td>检测疑似沙箱拦截（SIGSYS 退出码/关键词）→ 主动询问「是否不用沙箱重试」</td></tr>
+    <tr><td>批准缓存</td><td>无（每次 allowed-once）</td><td>ApprovedForSession 会话级缓存 + execpolicy 前缀修正（amendment）</td></tr>
+    <tr><td>审批通道</td><td><code>approval/request</code> 瀑布应答器（web UI / ACP）；never 在服务内先决、任何监听器不可绕过</td><td>终端/IDE 审批；macOS 沙箱内进程可经 unix socket（shell-escalation crate）向宿主请求越权；approvals_reviewer 可由审查 agent 代审</td></tr>
+  </table>
+  <div class="keypoint">DSH 的升级语义更保守（梯度受限、单次授权、强审计），Codex 的更顺滑（绕沙箱首跑、会话缓存、自动重试询问）。面向<strong>最终用户产品</strong>建议取 DSH 语义；面向<strong>效率型内部工具</strong>可参考 Codex 的缓存与重试体验。</div>
+
+  <h3>3.6 会话/引擎隔离（DSH 特有的「嵌入隔离」层）</h3>
+  <p><span class="tag codex">Codex</span> 单机运行时使用全局 <code>~/.codex</code>。<span class="tag dsh">DSH</span> 把外部引擎嵌入时的隔离做成了现实范例，也是合并方案的关键参考：</p>
+  <ul>
+    <li><strong>Claude 引擎</strong>：profile 级 <code>$DSH_HOME/engines/claude</code>（0700）作 <code>CLAUDE_CONFIG_DIR</code>；会话靠持久化 native session id 绑定（重放校验 cwd）；宿主只镜像 CLAUDE.md / skills / <code>settings.json</code> 的 permissions 段（进程级快照），凭据与其余字段不镜像；完全权限会话清除镜像权限防止复权。</li>
+    <li><strong>Codex 引擎</strong>：每会话独立 home <code>session-homes/&lt;sha256(sessionId)&gt;</code>（0700）+ 独立 sqlite/log；恢复时校验 rollout 的 id 与 cwd、拒绝多义；宿主 <code>config.toml</code> 只镜像权限/信任/项目文档字段与 <code>rules/*.rules</code>（进程级快照、重启发条），模型/提供者/MCP/凭据字段永不进入会话 home；完全权限剥离权限字段与规则。</li>
+    <li><strong>凭据与环境</strong>：所有子进程从 <code>scrubbedParentEnv()</code>（剔除 <code>KEY|PASSWORD|SECRET|TOKEN</code> 与全部 <code>DSH_*</code>）起步；引擎凭据仅经 owned env 注入，部署配置禁止覆盖保留键。</li>
+  </ul>
+  <p class="muted">证据：subagent-claude-code/src/engine.ts:494-525、user-memory.ts:41-83；subagent-codex/src/storage.ts:33-101、user-config.ts:104-134、engine.ts:500-505；subprocess/src/index.ts:40-80</p>
+  <div class="keypoint">这一层与 Codex 报告的「ToolPolicy 协议缺口」互相印证：DSH 正是走 app-server 接入 Codex 的宿主，因为协议里没有 tool_policy 字段，DSH 用「宿主权限规则镜像 + 原生审批路由」替代了白名单注入。若在 app-server 协议补上 <code>tool_policy</code>，DSH 的 <code>subagent-codex</code> 引擎即可把会话白名单直接下发到引擎注册表，形成端到端白名单。</div>
+
+  <h3>3.7 失败语义对比</h3>
+  <table>
+    <tr><th style="width:170px">情形</th><th><span class="tag dsh">DSH</span></th><th><span class="tag codex">Codex</span></th></tr>
+    <tr><td>沙箱设施不可用</td><td>抛 <code>SANDBOX_UNAVAILABLE</code>，命令不执行（fail closed）</td><td>报错不裸跑（SeatbeltUnavailable / MissingLinuxSandboxExecutable / WSL1 硬错误）；Windows Disabled 时降级 read-only</td></tr>
+    <tr><td>runner 故障 vs 策略拒绝</td><td>结构化签名区分（bwrap:/sandbox-exec:/landlock exit125/windows-acl exit127）；前台抛错、后台标 runnerFailed</td><td>拒绝分类（denial.rs 启发式 + SIGSYS）用于触发重试询问</td></tr>
+    <tr><td>拒绝反馈给模型</td><td><code>[sandbox: file access denied under &lt;mode&gt; mode]</code> + 升级提示标记</td><td>拦截检测 → 审批重试流</td></tr>
+    <tr><td>进程内文件围栏</td><td><code>fs-sandbox</code>：canonicalize-then-contain，明言「containment, not a security boundary」</td><td>—（等价物是 exec_policy 规则层）</td></tr>
+  </table>
+</section>
+
+<!-- ============ 4 工具白名单对比 ============ -->
+<section id="s4">
+  <h2><span class="no">4</span>工具白名单对比</h2>
+
+  <h3>4.1 链路对比：定义 → 注册 → 曝光 → 分发</h3>
+  <div class="cols">
+    <div class="panel dsh"><h4><span class="tag dsh">DSH</span>（core/tools）</h4>
+<pre>register(definition)  ← registrations-as-effects，重名失败，run_code 保留
+  ↓ systemPrompt provider（组装期收集 wireSchemas(scope)）
+每次请求 assemble → tools 参数（含 toolOrder 排序）
+  ↓ 模型 tool_call
+prepareExecution
+  ├ PTC 折叠预检（ptc 模式直调普通工具 → UNKNOWN_TOOL）
+  ├ tools/pre-execute 瀑布（allow/deny/cancel/ask）
+  ├ ask → ctx.approval（唯一放行 allowed-once）
+  ├ 单调 ToolGuard（deny-only，瀑布后、工具体前）
+  → 工具体 → post-execute（accept/block）→ tool/result 落日志
+不可见/被折叠工具派发 → UNKNOWN_TOOL（可见性=执行权）</pre>
+      <p class="muted">core/tools/src/index.ts:1064-1089（register）、1098-1125（restrict）、1179-1220（view）、1494-1536（管线）、1728-1769（ask）</p></div>
+    <div class="panel codex"><h4><span class="tag codex">Codex</span>（tools/registry + spec_plan）</h4>
+<pre>每轮 build_tool_router（spec_plan.rs:122）
+  ToolRegistry::with_tool_policy(session.tool_policy)
+  依次注册 shell/MCP/update_plan/apply_patch/view_image/web_search/…
+  注册入口先查 tool_policy.allows —— 白名单外直接不注册（registry.rs:350/366/390）
+finalize：hosted specs 再过滤（spec_plan.rs:376）
+  → build_model_visible_specs（只留 exposure.is_direct()）
+  → Prompt.tools
+模型 FunctionCall
+  → ToolRegistry::dispatch_any_with_state（registry.rs:532）
+      查不到 → "unsupported call"（registry.rs:858）← 运行期兜底
+      PreToolUse hooks（可阻断/改写入参）
+      handler 执行 → PostToolUse hooks</pre>
+      <p class="muted">spec_plan.rs:122,369,599；registry.rs:350-390,532,608-660,858</p></div>
+  </div>
+  <p>两边的共同骨架都是「<strong>注册期过滤 + 模型可见列表 + 运行期兜底</strong>」，这正是白名单应当落位的三点；差别在过滤依据（启动期不可变 ToolPolicy vs 运行期作用域视图）与拦截形态（进程内类型化瀑布 vs 外部 hook 脚本）。</p>
+
+  <h3>4.2 白名单原语正面对比</h3>
+  <table>
+    <tr><th style="width:170px">维度</th><th><span class="tag dsh">DSH</span> tools.restrict</th><th><span class="tag codex">Codex</span> ToolPolicy</th></tr>
+    <tr><td>声明位置</td><td>agent 作用域上下文内编程调用；<strong>全局上下文调用直接抛错</strong>（强制面向具体 agent）</td><td>宿主构造 <code>StartThreadOptions.thread_extension_init.insert(ToolPolicy{…})</code></td></tr>
+    <tr><td>语义</td><td><code>allow</code> / <code>deny</code>；跨作用域链<strong>交集</strong>（只会更严）；不影响 scope 自有注册；不能命名保留的 run_code；空过滤器/未知名 fail loud</td><td><code>allowed_tools: Option&lt;Vec&lt;ToolName&gt;&gt;</code>（None=不过滤，Some([])=全禁）；<code>require_managed_sandbox</code> / <code>require_unified_exec</code> 连带约束；按 name+namespace 精确匹配</td></tr>
+    <tr><td>生命周期</td><td>返回精确 disposer，<strong>可动态解除/重设</strong></td><td>线程启动一次性捕获，<strong>生命周期内不可变、不可放宽</strong>；冷 resume 不持久化，宿主必须重新注入</td></tr>
+    <tr><td>生效点</td><td>prompt schema 过滤 + dispatch 拒绝（<code>UNKNOWN_TOOL</code>）——同一份视图</td><td>注册期不注册 + hosted specs 过滤 + 运行期 <code>unsupported call</code>——三重</td></tr>
+    <tr><td>覆盖面</td><td>仅 DSH 原生工具（<code>ctx.tools</code> 注册表）；<strong>管不到外部引擎内部工具</strong></td><td>覆盖所有工具来源：内置、MCP（namespace）、hosted specs、Code Mode 生成工具（需显式列入 exec/wait）</td></tr>
+    <tr><td>参考实现/测试</td><td>委派子代理 toolFilter（child-agent.ts:226）+ 审批钉死 never = 现成「受限主体」模板</td><td>guardian-reviewer 白名单（settings.rs:31-43）；端到端测试 managed_threads_tests.rs:255-353</td></tr>
+    <tr><td>协议暴露</td><td>会话创建 API 可带 preset/权限预设，链路完整</td><td class="warn">仅 Rust 进程内 API；app-server <code>ThreadStartParams</code> 与 TS/Python SDK 无字段，需自行补协议</td></tr>
+  </table>
+  <div class="keypoint">选型直觉：<strong>要「最硬」的白名单（模型连看都看不到、启动后不可放宽）选 ToolPolicy 形态；要「最活」的白名单（运行中按用户/场景动态调整、按 agent 差异化）选 restrict 形态。</strong>合并方案里两者不冲突：Codex 作执行核时 ToolPolicy 是骨架，DSH 作宿主时 restrict 管原生工具、ToolPolicy（经补丁后的协议）管引擎工具。</div>
+
+  <h3>4.3 可见性原语的安全定性（方向相反的教训）</h3>
+  <div class="cols">
+    <div class="panel dsh"><h4><span class="tag dsh">DSH</span>：可见性 = 执行权</h4><p>被 restrict 的工具同时从 prompt schema 与 dispatch 消失，不存在「看不见但能调」的旁路。框架不变式写入执行管线（resolveExecution → UNKNOWN_TOOL）。曝光层不存在独立概念，因此没有「用曝光当权限」的误区空间。</p></div>
+    <div class="panel codex"><h4><span class="tag codex">Codex</span>：曝光与执行解耦，并明示危险</h4><p><code>ToolExposure</code>（Direct/DirectModelOnly/Deferred/CodeModeOnly/Hidden）只控制出现在哪些模型可见面；<strong>Deferred 工具的 runtime 始终留在 registry，dispatch 不检查 exposure</strong>——模型不经过 tool_search 直接 FunctionCall 也能执行。报告原话：exposure 不能当作安全边界，白名单必须落在注册期（ToolPolicy）。</p></div>
+  </div>
+
+  <h3>4.4 MCP 与外部工具面</h3>
+  <table>
+    <tr><th style="width:170px"></th><th><span class="tag dsh">DSH</span></th><th><span class="tag codex">Codex</span></th></tr>
+    <tr><td>命名</td><td><code>mcp__&lt;server&gt;__&lt;tool&gt;</code> 确定性命名，冲突加 12 位哈希后缀；注册冲突整代回滚（防命名抢注）</td><td>namespace=服务器名（可开 <code>mcp__</code> 前缀），同名消毒 + sha1 后缀；展示名 <code>namespace__name</code></td></tr>
+    <tr><td>per-tool 过滤</td><td class="warn">mcp-client 无配置项——靠 <code>tools.restrict</code> 精确名单或组合层不挂载</td><td class="ok">per-server <code>enabled_tools</code>（显式白名单）/ <code>disabled_tools</code>（黑名单后生效）/ per-tool <code>approval_mode</code>（Auto/Prompt/Writes/Approve）/ <code>omit_tools_from</code>；另有 AppToolPolicy 多级优先级</td></tr>
+    <tr><td>命令级策略</td><td>宿主 <code>~/.codex/rules</code> 镜像（DSH 嵌入场景），规则解析交给 Codex 原生运行时</td><td>exec_policy 规则（<code>~/.codex/rules</code>）：shell 类工具能跑哪些命令前缀 → Allow/Prompt/Forbidden</td></tr>
+  </table>
+
+  <h3>4.5 组合层：怎么决定「最初有哪些工具」</h3>
+  <div class="cols">
+    <div class="panel dsh"><h4><span class="tag dsh">DSH</span>：Agent Preset（未注册即不存在）</h4><p>preset = 一组插件行，装载哪些工具插件决定工具面——第一道也是最可靠的闸门。会话创建时经 <code>agentPreset</code> 选择，首条用户消息后锁定、创建后不可换（ApiSessionPresetConflict）。受限主体模板：子代理委派时 <code>toolFilter → restrict</code> + approval 钉死 never + 策略创建时定格。</p></div>
+    <div class="panel codex"><h4><span class="tag codex">Codex</span>：features / profiles / per-thread 覆盖</h4><p><code>[features]</code> 枚举逐项开关（shell_tool/view_image/multi_agent/memories…）、<code>web_search=disabled</code>、<code>[tools].*</code>；<code>[profiles]</code> 组合成受限档案。局限：粒度粗（apply_patch 无开关）、<strong>unified_exec 普通配置关不掉</strong>（强制开启且 one-shot exec 保底）——纯配置无法真正阻止命令执行；per-thread feature 可经 gRPC 远端下发，可作按用户裁剪的补充。</p></div>
+  </div>
+
+  <h3>4.6 拦截 hook 对比</h3>
+  <table>
+    <tr><th style="width:170px"></th><th><span class="tag dsh">DSH</span></th><th><span class="tag codex">Codex</span></th></tr>
+    <tr><td>形态</td><td>进程内类型化插件：pre-execute 瀑布（allow/deny/cancel/ask）+ 单调 guard（deny-only，先于工具体，监听顺序无法翻案）+ post-execute（block）</td><td>外部脚本 hook：PreToolUse 同步拦截可 <code>Blocked(message)</code> 或改写入参；PostToolUse 可拒收结果；走 config 文件 + 信任模型（bypass_hook_trust）</td></tr>
+    <tr><td>现成实例</td><td>Auto review 风险分级 gate；结构化输出收尾 guard；超时与重复调用防护（guard 包组）</td><td>hook 审计 / 参数级拦截</td></tr>
+    <tr><td>适配场景</td><td>硬策略（代码插件、强类型）、需要 ask 升级审批的参数级策略</td><td>运维可配的审计/拦截、不改代码的深度防御</td></tr>
+  </table>
+</section>
+
+<!-- ============ 5 合并推荐 ============ -->
+<section id="s5">
+  <h2><span class="no">5</span>专题深挖：跨会话文件隔离与 bash 逃逸（2026-10-05 补充）</h2>
+  <p>针对二次开发最常被追问的两个安全问题做专项核查：① <strong>不同会话的文件读写是否隔离</strong>（尤其 /tmp 下的临时文件）；② <strong>能否禁止运行未注册的工具，尤其是通过 bash 运行</strong>。核查结论：两个方向上两套系统的现有机制<strong>都不完整</strong>，需要补充设计。本节结论已同步补入两侧源报告（DSH 报告新增 §5；codex-main 两份报告各新增补充章节）。</p>
+
+  <h3>5.1 专题一：跨会话文件读写隔离（/tmp 共享问题）</h3>
+  <div class="keypoint warm"><strong>结论：两套系统的会话隔离都不包含"文件系统副作用按会话隔离"，/tmp 是全机共享路径。</strong>workspace-write 会话之间可互相读写对方的临时文件；read-only 会话不可写但可读面不受限——同 UID 下跨会话读取在任何模式下都成立。唯一的会话粒度实现是 DSH 的 Windows 后端。</div>
+  <table>
+    <tr><th style="width:170px">维度</th><th><span class="tag dsh">DSH</span></th><th><span class="tag codex">Codex</span></th></tr>
+    <tr><td>workspace-write 可写根</td><td>会话 cwd + <code>/tmp</code> + <code>os.tmpdir()</code>（roots.ts:54）——全机共享</td><td>工作区 + <code>/tmp</code> + <code>$TMPDIR</code> + 额外 writable_roots（permissions.rs:819-874）；macOS 另显式放行机器共享的 <code>/private/tmp</code>、<code>/private/var/tmp</code> scratch（seatbelt_scratch.rs:31-33）</td></tr>
+    <tr><td>子进程临时目录重写</td><td class="bad">POSIX 无（继承宿主环境；ENV_OVERRIDES 仅 NO_COLOR/TERM/PAGER 等）</td><td class="bad">无（TMPDIR/TEMP/TMP 属直通核心变量，shell_environment.rs:165,197；spawn.rs:52-93）</td></tr>
+    <tr><td>会话私有临时目录</td><td class="ok">Windows 例外：workspace-write + sessionId 时每会话物化随机私有临时目录 + 独立写 SID，runner 重写 TMP/TEMP，其他会话的共享 SID 进不来（sandbox-local/src/index.ts:369-430）；read-only/缺 sessionId 回落共享 tmpdir</td><td class="bad">全平台无（core 内 TempDir 仅测试使用）</td></tr>
+    <tr><td>剔除共享 /tmp 的旋钮</td><td class="bad">无</td><td class="warn">有 exclude_slash_tmp / exclude_tmpdir_env_var（config_toml.rs:865-887），但<strong>只剔除、无替代</strong>：剔除后被沙箱命令没有任何可写临时路径，依赖临时文件的命令失败</td></tr>
+    <tr><td>读方向隔离</td><td colspan="2" style="text-align:center" class="bad">都没有：read-only 只 deny 写，可读面不受限；同 UID 文件级读隔离不存在（需低权专用用户 / 每会话容器）</td></tr>
+    <tr><td>框架自身落盘</td><td>spill 输出溢出根是<strong>进程级</strong> mkdtemp 0700 目录（spill-local/src/store.ts:36-40）——同进程所有会话共享，同 UID 的 bash 可读到其他会话的溢出输出</td><td>rollout/日志在全局 <code>~/.codex</code>（单机单用户形态，无多会话部署问题域）</td></tr>
+  </table>
+  <p><strong>补齐方案（两栈通用，按成本排序）</strong>：① 每会话 mkdtemp 一个 0700 私有临时目录，重写子进程 <code>TMPDIR/TEMP/TMP</code>，并把可写根中的字面 /tmp 替换为该目录——最小改动、收益最大（DSH 可对齐其 Windows 后端既有做法；Codex 的最小侵入改法是让 <code>:tmpdir</code>/<code>:slash_tmp</code> 解析支持会话作用域语义）；② Linux 每会话 <code>bwrap --tmpfs /tmp</code>、macOS SBPL deny 系统 /tmp 仅放行私有目录；③ exclude_* 旋钮保留但与私有目录配套（先替代、后剔除）；④ 读隔离靠低权专用用户运行 harness 或按会话容器化——同 UID 下没有文件级读隔离；⑤ 多会话部署把 spill/attachment 等框架自落盘目录按会话分目录；⑥ 验收标准：双 workspace-write 会话交叉验证"A 写 B 读不到"（两栈 POSIX 当前都会失败，这正是要修的）。</p>
+
+  <h3>5.2 专题二：bash 是白名单的逃逸通道（经 shell 运行未注册工具）</h3>
+  <div class="keypoint warm"><strong>结论：工具白名单约束的是"模型面前的工具清单"，不是"机器上能发生什么"。</strong>只要 shell 类工具在白名单里，模型就能调用任何未注册工具的等价 CLI（<code>bash: curl</code> 代替 web_fetch、<code>bash: gh</code> 代替未注册 git 工具），甚至 <code>codex exec</code> 起嵌套智能体。OS 层两边都没有二进制白名单（Seatbelt <code>(allow process-exec)</code>、bwrap/landlock 只限文件与网络、Windows 不限 .exe）——命令层闸门只能靠命令前缀策略。</div>
+  <table>
+    <tr><th style="width:170px">维度</th><th><span class="tag dsh">DSH</span></th><th><span class="tag codex">Codex</span></th></tr>
+    <tr><td>"任意执行"面</td><td>四个，必须整体取舍：<code>bash</code>、<code>pwsh</code>、<code>terminal_*</code>（持久终端）、<code>run_code</code>（PTC：受沙箱策略约束的新 Node/Python 进程执行模型编写的程序）</td><td><code>exec_command</code> / unified exec（shell 类工具组）</td></tr>
+    <tr><td>命令策略引擎</td><td class="bad">无内置：guard 包只有重复提醒与超时（均不拦截）；bash 工具只有沙箱模式 + 逐调用审批，没有"允许哪些命令"的概念——<strong>命令白名单必须自建</strong>（pre-execute 监听 / tools.guard 做 argv 前缀白名单）</td><td class="ok">exec_policy 现成：Starlark <code>prefix_rule</code> 按 argv 有序前缀匹配（首 token = 程序名，<code>bash -lc</code> 包装先拆内部命令再匹配，exec_policy.rs:876-904），裁决 Forbidden/Prompt/Allow（:394-460）</td></tr>
+    <tr><td>无规则时的默认姿态</td><td>（无此概念）</td><td class="warn">空策略 → 未匹配命令回落危险命令启发式 + 审批策略：rm -rf 类 Prompt/Forbidden，其余在受限沙箱 + OnRequest/Granular 下<strong>默认允许在沙箱内执行</strong>（exec_policy.rs:770-855）——是"沙箱兜底的宽松"，不是命令白名单</td></tr>
+    <tr><td>中央下发</td><td class="bad">无（自建策略服务）</td><td class="ok">requirements overlay（MDM/企业后端，config_requirements.rs:45-57）合并在本地规则之上（exec_policy.rs:711-715）；隔离会话只加载 requirements（session/mod.rs:616-627）；可整体忽略用户/项目规则</td></tr>
+    <tr><td>网络对逃逸的影响</td><td class="bad">沙箱不管网络：workspace-write 下 <code>bash + curl</code> 默认可用，免费获得 web 类工具全部能力</td><td class="ok">默认断网（两档皆 Restricted）：curl/wget 类网络逃逸默认失效，开网需显式配置</td></tr>
+    <tr><td>配套防御</td><td>审批 ask 逐调用放行；<code>tool/result</code> 含完整命令文本可审计</td><td>框架阻止"把 <code>bash -c</code> 整体加白"的自动建议（BANNED_PREFIX_SUGGESTIONS，exec_policy.rs:57-146,970-978）；Allow 规则匹配全部段时可绕过沙箱本身（:440-454），编写规则要避免宽前缀</td></tr>
+  </table>
+  <p><strong>补齐方案（合并）</strong>：① 不需要 shell 就绝不放进白名单——唯一 100% 有效的手段；② 需要时实施"<strong>工具白名单 + 命令前缀白名单</strong>"双层：ToolPolicy 管"有哪些工具"、exec_policy/restrict-guard 管"shell 里能跑什么"，缺一不可；③ Codex 栈把"用户可用 CLI 清单"翻译成 requirements exec_policy，与 ToolPolicy 在 <code>StartThreadOptions</code> 同时注入，嵌套 agent CLI（<code>codex</code>/<code>claude</code>）与结构复杂命令（管道/命令替换/脚本文件）默认 Prompt 或 Forbidden；④ DSH 栈自建命令前缀 guard（约一天工作量，形态参考 execpolicy），解析失败即拒绝；⑤ 网络层兜底（DSH 必须：禁 web 工具只是第一道，代理/防火墙才是边界）；⑥ 保持 shell 类工具 approval: ask 与全量命令审计。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="no">6</span>合并推荐：统一分层管控架构</h2>
+  <p>两边推荐组合逐层同构，合并为一套五层模型，并为两层栈各标对应物：</p>
+  <table>
+    <tr><th style="width:130px">层</th><th>职责</th><th><span class="tag dsh">DSH</span> 对应物</th><th><span class="tag codex">Codex</span> 对应物</th></tr>
+    <tr><td><strong>L0 组合</strong></td><td>决定「最初存在哪些工具」——未注册即不存在，最强闸门</td><td>Agent Preset 插件行（+ 服务端按用户组选 preset）</td><td><code>[features]</code>/<code>[profiles]</code>（受粒度限制）</td></tr>
+    <tr><td><strong>L1 白名单</strong></td><td>模型面前的精确工具集合；未授权不可见亦不可调</td><td><code>tools.restrict({allow})</code>（每 agent 作用域）</td><td><code>ToolPolicy.allowed_tools</code>（每线程注入，不可放宽）</td></tr>
+    <tr><td><strong>L2 细化</strong></td><td>MCP/外部工具面 per-tool 裁剪与审批模式</td><td>restrict 名单纳入 <code>mcp__*</code>；只挂可信 MCP 插件行</td><td>MCP <code>enabled_tools/disabled_tools</code> + <code>approval_mode</code> + AppToolPolicy</td></tr>
+    <tr><td><strong>L3 执行面</strong></td><td>允许执行的工具以什么环境/审批运行</td><td>权限预设（沙箱模式 × 审批）+ <code>ctx.approval</code>（never 先决）+ 沙箱模式</td><td><code>sandbox_mode</code> + <code>approval_policy</code> + exec_policy rules</td></tr>
+    <tr><td><strong>L4 审计/兜底</strong></td><td>全量审计、参数级拦截、动态回收</td><td><code>tools.guard</code> / pre-execute 监听（读会话元数据实时判定）+ 会话日志审计（tool/result、approval/asked|decided）</td><td>PreToolUse/PostToolUse hooks 审计日志</td></tr>
+  </table>
+
+  <h3>5.1 选型决策指南</h3>
+  <table>
+    <tr><th style="width:330px">场景</th><th>建议</th></tr>
+    <tr><td>要「最硬」白名单，能以 Rust 库嵌入执行核</td><td><span class="tag codex">Codex</span> core-api + ToolPolicy：宿主维护「用户/租户 → allowed_tools」映射，<code>start_thread</code> 注入，<strong>resume 必须重注入</strong>（否则回落不过滤）；对照 managed_threads_tests.rs:255 写回归。零协议改动，一天可跑通。</td></tr>
+    <tr><td>经 app-server / TS / Python SDK 接入 Codex</td><td>补协议字段：<code>ThreadStartParams/ThreadResumeParams</code> 增加 <code>tool_policy</code>，在 thread_processor 构建 <code>thread_extension_init</code> 处解析注入；展示层全名（如 <code>mcp__github__create_issue</code>）由宿主拆分。白名单条目务必用 <code>tools/list</code> 实际返回名回填。</td></tr>
+    <tr><td>多引擎（Claude + Codex）统一管控的宿主框架</td><td><span class="tag dsh">DSH</span> 形态：preset + restrict 管原生工具；引擎侧用启动参数映射（Claude SDK options / Codex 沙箱审批）+ 权限镜像；若补了 tool_policy 协议，则把会话白名单直达引擎注册表，形成端到端白名单。</td></tr>
+    <tr><td>需要运行中动态调整工具面</td><td><span class="tag dsh">DSH</span> restrict 的 disposer 模式，或 guard 实时查策略服务；<span class="tag codex">Codex</span> 只能靠 hook（新线程生效）——ToolPolicy 天生不可放宽。</td></tr>
+    <tr><td>网络合规要求</td><td><span class="tag codex">Codex</span> 沙箱自带（默认断网）；<span class="tag dsh">DSH</span> 必须自建（禁 web 工具 / 代理 / 防火墙），并在白名单里剔除 web 类工具作为第一道。</td></tr>
+    <tr><td>按用户/租户下发策略</td><td>两边都需自建 principal；建议在会话创建边界落「用户 → 工具集 + 权限预设」映射（DSH：agentPreset + 服务端网关限制可选 preset；Codex：每线程注入 ToolPolicy + per-thread feature）。</td></tr>
+  </table>
+
+  <h3>5.2 MVP 步骤（合并版）</h3>
+  <ol>
+    <li><strong>定骨架</strong>：选定执行栈后，先落 L0+L1——Codex 栈：ToolPolicy 注入（Rust 嵌入零改动 / 协议补小字段）；DSH 栈：受限 preset + agent setup 中 <code>restrict({allow})</code>。以 allow 白名单为准（默认拒绝），不用 deny 枚举。</li>
+    <li><strong>补细化</strong>：MCP 服务器侧启用 enabled_tools/disabled_tools（Codex 原生配置；DSH 把 <code>mcp__*</code> 名单并入 restrict）。</li>
+    <li><strong>锁执行面</strong>：生产默认 read-only 或 workspace-write + ask；完全关闭 danger-full-access 的用户可达性；DSH 栈另需处理网络（Codex 栈默认已断网）。</li>
+    <li><strong>上审计</strong>：L4 hook/guard 记录每次调用的策略判定；两边的授权记录已天然落会话日志，补一个监听即可闭环。</li>
+    <li><strong>写回归</strong>：对照 Codex managed_threads_tests.rs:255-353 / DSH engine-endpoint 权限切换测试的形态，验证「白名单外不可见、调用被拒、启动后不可放宽、resume 后策略仍生效」四条。</li>
+  </ol>
+</section>
+
+<!-- ============ 6 清单 ============ -->
+<section id="s7">
+  <h2><span class="no">7</span>安全检查清单（合并）</h2>
+  <ul class="checklist">
+    <li><strong>默认拒绝</strong>：L0 不装载未批准工具；L1 显式 allow 白名单。绝不以 prompt 约束替代任何一层。</li>
+    <li><strong>可见性原语不作权限</strong>：Codex ToolExposure（Deferred/Hidden）不是安全边界；DSH 的曝光与执行虽绑定，权限语义仍以 restrict/注册期为准。</li>
+    <li><strong>保留 fail-closed</strong>：不把 DSH 的 bash-sandbox 换成 bash-local；不设 danger-full-access 默认；沙箱后端探测与不可用报错保持开启；Codex 栈注意 Windows Disabled 的自动降级是否符合预期。</li>
+    <li><strong>resume 即重注入</strong>：Codex 冷 resume 不持久化 ToolPolicy——把「resume 必带 policy」做成宿主 API 契约（或上游持久化到 rollout）。</li>
+    <li><strong>白名单条目以实名为准</strong>：MCP 消毒/哈希后缀、<code>mcp__</code> 前缀开关、Code Mode 生成工具（exec/wait）都要按 <code>tools/list</code> 回填。</li>
+    <li><strong>引擎双写</strong>：DSH 宿主的 restrict 管不到 Claude/Codex 内部工具；引擎侧机制（SDK options / 原生审批 / 权限镜像）必须同时配置，并接受「宿主审批不能推翻引擎原生 deny」。</li>
+    <li><strong>升级语义收紧</strong>：面向最终用户取「梯度受限 + allowed-once + turn 内审计」；评估是否接受 Codex 的「批准后绕沙箱首跑」与 ApprovedForSession 缓存。</li>
+    <li><strong>审批通道唯一化</strong>：只保留目标应答器（web UI 等）；DSH 的 never 在服务内先决、Codex 的 never/granular 确认不被旁路配置削弱。</li>
+    <li><strong>环境变量不是权限边界</strong>：凭据走凭据服务；DSH 的 scrub 是纵深防御而非访问控制。</li>
+    <li><strong>会话间临时文件隔离</strong>：并发会话使用会话私有临时目录（重写 TMPDIR/TEMP 并替换可写根中的 /tmp）；验收做双会话交叉验证；读隔离按低权用户/容器评估。</li>
+    <li><strong>shell 命令白名单</strong>：白名单含 shell 类工具时，必须有命令前缀策略（Codex：requirements exec_policy；DSH：自建 guard），结构复杂命令升级审批，嵌套 agent CLI（codex/claude 等）默认拒绝。</li>
+    <li><strong>网络出口受控</strong>：DSH 沙箱不管网络——禁 web 工具 + 代理/防火墙落地；Codex 确认 network_access 未被误开。</li>
+    <li><strong>硬隔离需求走 seam 替换</strong>：不可信代码执行上容器/microVM/远程执行（DSH sandbox-ssh 或 Codex ExternalSandbox 显式声明），应用层补丁不构成边界。</li>
+    <li><strong>防篡改特判</strong>：DSH 栈可借鉴 Codex 的「可写根下 .git/.agents/.codex/.aws 强制只读」，在可写根策略中加入保护名单。</li>
+  </ul>
+</section>
+
+<!-- ============ 7 索引 ============ -->
+<section id="s8">
+  <h2><span class="no">8</span>关键代码 / 文件索引</h2>
+  <div class="cols">
+    <div class="panel dsh"><h4><span class="tag dsh">deepseek-harness</span></h4>
+      <table>
+        <tr><th>主题</th><th>位置</th></tr>
+        <tr><td>沙箱接缝/失败分类/升级</td><td>packages/sandbox/sandbox/src/{index,diagnostics,escalation,roots}.ts</td></tr>
+        <tr><td>平台 profile 与链选择</td><td>packages/sandbox/sandbox-local/src/{profiles,index}.ts</td></tr>
+        <tr><td>Windows 受限令牌</td><td>packages/sandbox/sandbox-windows-acl/src/{runner,token,workspace-sid}.ts</td></tr>
+        <tr><td>Landlock launcher</td><td>native/landlock-run/packages/entry/lib/index.js</td></tr>
+        <tr><td>策略解析/会话模式</td><td>packages/sandbox/sandbox-policy/src/{index,session-mode}.ts</td></tr>
+        <tr><td>执行接缝</td><td>packages/shell/{shell/src/types.ts, bash-sandbox, bash-local, tool-bash}</td></tr>
+        <tr><td>进程缝合/env scrub</td><td>packages/subprocess/{subprocess/src/index.ts, subprocess-local/src/*}</td></tr>
+        <tr><td>审批/提问/预设</td><td>packages/interaction/{user-approval, user-questions, permission-presets}/src/index.ts</td></tr>
+        <tr><td>工具注册表/管线/restrict/guard</td><td>packages/core/tools/src/{index.ts, schema.ts, ptc.ts}</td></tr>
+        <tr><td>Preset 组合</td><td>packages/preset/agent-preset*/；api/session-controller/src/agent.ts</td></tr>
+        <tr><td>子代理委派 toolFilter</td><td>packages/subagent/subagent/src/child-agent.ts:172,213-226,257-264</td></tr>
+        <tr><td>引擎隔离与权限映射</td><td>packages/subagent/subagent-claude-code/src/{engine,run,user-memory}.ts；subagent-codex/src/{engine,storage,user-config}.ts</td></tr>
+        <tr><td>子系统文档</td><td>docs/subsystems/{sandbox,shell,subprocess,approval}.md；docs/architecture.md</td></tr>
+      </table>
+    </div>
+    <div class="panel codex"><h4><span class="tag codex">codex-main</span></h4>
+      <table>
+        <tr><th>主题</th><th>位置</th></tr>
+        <tr><td>ToolPolicy 定义/匹配</td><td>codex-rs/ext/extension-api/src/tool_policy.rs:10,35</td></tr>
+        <tr><td>宿主注入字段</td><td>codex-rs/core/src/thread_manager.rs:290（thread_extension_init）</td></tr>
+        <tr><td>策略捕获（不可变）</td><td>codex-rs/core/src/session/session.rs:1003-1012</td></tr>
+        <tr><td>注册期过滤</td><td>codex-rs/core/src/tools/registry.rs:350,366,390</td></tr>
+        <tr><td>每轮注册/模型可见列表</td><td>codex-rs/core/src/tools/spec_plan.rs:122,369,599</td></tr>
+        <tr><td>分发与未知工具兜底</td><td>codex-rs/core/src/tools/registry.rs:532,858</td></tr>
+        <tr><td>ToolExposure 枚举</td><td>codex-rs/tools/src/tool_executor.rs:51-99</td></tr>
+        <tr><td>PreToolUse/PostToolUse</td><td>codex-rs/core/src/hook_runtime.rs:188-245；registry.rs:608-660,760-768</td></tr>
+        <tr><td>MCP per-server 过滤</td><td>codex-rs/config/src/mcp_types.rs:284,288；codex-mcp/src/tools.rs:66-96</td></tr>
+        <tr><td>features / profiles / per-thread</td><td>codex-rs/features/src/lib.rs；config/src/{profile_toml,thread_config}.rs</td></tr>
+        <tr><td>exec 命令策略</td><td>codex-rs/core/src/exec_policy.rs:294</td></tr>
+        <tr><td>沙箱模式/权限档案</td><td>codex-rs/protocol/src/{config_types.rs:104, models.rs:421, permissions.rs:40}</td></tr>
+        <tr><td>平台沙箱</td><td>codex-rs/sandboxing/src/{manager,seatbelt,landlock,denial,policy_transforms}.rs；linux-sandbox/；windows-sandbox-rs/</td></tr>
+        <tr><td>越权升级</td><td>codex-rs/core/src/tools/{shell_spec.rs:232, sandboxing.rs:40,252, orchestrator.rs:621}</td></tr>
+        <tr><td>参考实现与测试</td><td>codex-rs/ext/guardian-reviewer/src/settings.rs:31-43；core/tests/suite/managed_threads_tests.rs:255-353</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 来源 ============ -->
+<section id="s9">
+  <h2><span class="no">9</span>来源与基准</h2>
+  <table>
+    <tr><th style="width:220px">来源</th><th>说明</th></tr>
+    <tr><td>research/sandbox-isolation-and-tool-restriction.zh.md（本仓库）</td><td>deepseek-harness 调研报告（2026-10-05，branch migrate-main-engines 工作树；行号以该树为准）</td></tr>
+    <tr><td>/Users/hhh/zgx/opensource/codex-main/codex-tool-restriction-research.md</td><td>「基于 Codex 实现智能体系统的工具白名单调研报告」（2026-10-04，292 行）</td></tr>
+    <tr><td>/Users/hhh/zgx/opensource/codex-main/sandbox-security-analysis.md</td><td>「Codex 沙箱安全机制分析」（openai/codex main @ b8dceb0，2026-10-04，78 行）</td></tr>
+  </table>
+  <p class="muted">合并方法：三份源报告的结论未重新实验验证，行号引用沿用各源报告；两栈交叉印证处（如 DSH 嵌入 Codex 引擎的权限镜像 vs Codex ToolPolicy 协议缺口）为本报告的综合判断。上游提交可能使行号漂移，落地前请以对应 HEAD 复核。<strong>2026-10-05 补充</strong>：§5 两个安全专题（跨会话文件隔离、bash 逃逸）基于对两栈代码的专项核查新增；DSH 报告（research/sandbox-isolation-and-tool-restriction.zh.md §5）、codex-main 沙箱分析（新增「五、补充」）与工具白名单报告（新增「5. 补充」）已同步更新。</p>
+</section>
+
+<footer>合并对比报告 · 生成于 2026-10-05 · deepseek-harness × codex-main</footer>
+</div>
+</body>
+</html>

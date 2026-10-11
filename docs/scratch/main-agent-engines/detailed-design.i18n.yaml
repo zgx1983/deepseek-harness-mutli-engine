@@ -1,0 +1,34 @@
+# Bilingual-pair consistency record for detailed-design.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/detailed-design.md
+/main-agent-engine-detailed-design:
+  en: 7ad0f6b41ab8548c
+  zh: 840b72e2cda4c0d1
+/main-agent-engine-detailed-design/summary:
+  en: baa7a8193da2fe54
+  zh: 8eeca38d5a92b554
+/main-agent-engine-detailed-design/contents:
+  en: f04ad90a27a50500
+  zh: 54969bd41c65320d
+/main-agent-engine-detailed-design/registration-and-selection:
+  en: 0059cfacbc556bd1
+  zh: 39f32ff6ef54d31a
+/main-agent-engine-detailed-design/shared-runtime:
+  en: 058a9528e56ab78d
+  zh: 74626bbf9389f676
+/main-agent-engine-detailed-design/durable-data:
+  en: 2429027d7cf4f94a
+  zh: 465ff7eb0beb622e
+/main-agent-engine-detailed-design/input-and-recovery:
+  en: 3a7276daddc1a6c5
+  zh: ed1f7e840919a14d
+/main-agent-engine-detailed-design/events-and-presentation:
+  en: e6ac81b4d2504f53
+  zh: 3ca95e5ab1319374
+/main-agent-engine-detailed-design/provider-adapters:
+  en: 4d718b39dbb832cf
+  zh: ab8abc76c1eba499
+/main-agent-engine-detailed-design/compatibility-and-errors:
+  en: aeb8c00d4fe40bf0
+  zh: 68d7998ef6d11ceb

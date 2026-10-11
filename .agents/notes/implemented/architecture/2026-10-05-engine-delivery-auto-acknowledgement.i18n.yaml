@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-10-05-engine-delivery-auto-acknowledgement.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-10-05-engine-delivery-auto-acknowledgement.md
+/agent-note-external-engine-delivery-settles-as-acknowledged-uncertain-the-engine-owns-delivery-truth:
+  en: 7d2cf2c61833fd88
+  zh: 39e537645383a483
+/agent-note-external-engine-delivery-settles-as-acknowledged-uncertain-the-engine-owns-delivery-truth/problem:
+  en: 86e1dad5165ea8e0
+  zh: f5725e1fd22b4965
+/agent-note-external-engine-delivery-settles-as-acknowledged-uncertain-the-engine-owns-delivery-truth/decision:
+  en: e2ca1cb1d943222d
+  zh: fb5f960afda43f9a
+/agent-note-external-engine-delivery-settles-as-acknowledged-uncertain-the-engine-owns-delivery-truth/alternatives-considered:
+  en: 8d92968a00fc8749
+  zh: e46ec9c1675d2298
+/agent-note-external-engine-delivery-settles-as-acknowledged-uncertain-the-engine-owns-delivery-truth/consequences:
+  en: 49724c73056d30f0
+  zh: 30ed5b4cd33b3610

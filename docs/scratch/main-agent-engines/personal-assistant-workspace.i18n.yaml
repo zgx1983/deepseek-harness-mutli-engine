@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for personal-assistant-workspace.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/personal-assistant-workspace.md
+/personal-assistant-task-workspace-and-fixed-session-design:
+  en: 368ecbdbafdba702
+  zh: 34e6e87820d647ae
+/personal-assistant-task-workspace-and-fixed-session-design/summary:
+  en: 3af4b57a92de71f4
+  zh: 091c0b5e1995f1b9
+/personal-assistant-task-workspace-and-fixed-session-design/table-of-contents:
+  en: 2e1b8e307a8a1ed5
+  zh: fea830e9aeb61c1f
+/personal-assistant-task-workspace-and-fixed-session-design/current-implementation-and-starting-point:
+  en: 838165567ac3c245
+  zh: 0494a972ef70ffb4
+/personal-assistant-task-workspace-and-fixed-session-design/page-and-interaction:
+  en: 2221b983c2a76c8b
+  zh: 8261c792ab464e37
+/personal-assistant-task-workspace-and-fixed-session-design/compact-conversation-and-reply-display:
+  en: febf72380e7352c7
+  zh: 760e75fbc392171f
+/personal-assistant-task-workspace-and-fixed-session-design/fixed-working-directory-and-global-session:
+  en: 1743305200fc0444
+  zh: 669ad517bc176355
+/personal-assistant-task-workspace-and-fixed-session-design/data-refresh-and-multi-client-operations:
+  en: 3c0473ca5b902b0d
+  zh: e0e7e769ffc0a7ad
+/personal-assistant-task-workspace-and-fixed-session-design/scope-and-ownership:
+  en: f55e71e48c9be8b5
+  zh: 10a1e2c646a13cc1
+/personal-assistant-task-workspace-and-fixed-session-design/acceptance-and-feature-status:
+  en: 9a630276d953db96
+  zh: 1d24c9a38f767891
+/personal-assistant-task-workspace-and-fixed-session-design/dev-note:
+  en: 57e1bb297175c474
+  zh: e35eea02af298524

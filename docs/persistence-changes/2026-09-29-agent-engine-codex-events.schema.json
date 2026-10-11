@@ -1,0 +1,255 @@
+{
+  "formatVersion": 2,
+  "roots": [
+    {
+      "key": "event:engine/input-submitted",
+      "kind": "event",
+      "event": "engine/input-submitted",
+      "surface": false,
+      "digest": "db37da3df44dafc5e9db98230270761dde86504819a0c495d14ff550fc0a8d4b",
+      "schema": {
+        "root": 0,
+        "nodes": [
+          {
+            "kind": "object",
+            "properties": [
+              {
+                "name": "data",
+                "type": 1,
+                "optional": false
+              },
+              {
+                "name": "ignorable",
+                "type": 3,
+                "optional": true
+              },
+              {
+                "name": "seq",
+                "type": 4,
+                "optional": false
+              },
+              {
+                "name": "time",
+                "type": 4,
+                "optional": false
+              },
+              {
+                "name": "type",
+                "type": 5,
+                "optional": false
+              }
+            ],
+            "indices": []
+          },
+          {
+            "kind": "object",
+            "properties": [
+              {
+                "name": "attemptId",
+                "type": 2,
+                "optional": false
+              },
+              {
+                "name": "contentRef",
+                "type": 2,
+                "optional": false
+              },
+              {
+                "name": "inputId",
+                "type": 2,
+                "optional": false
+              },
+              {
+                "name": "operation",
+                "type": 2,
+                "optional": false
+              }
+            ],
+            "indices": []
+          },
+          {
+            "kind": "primitive",
+            "type": "string"
+          },
+          {
+            "kind": "literal",
+            "value": true
+          },
+          {
+            "kind": "primitive",
+            "type": "number"
+          },
+          {
+            "kind": "literal",
+            "value": "engine/input-submitted"
+          }
+        ]
+      }
+    },
+    {
+      "key": "event:engine/item-settled",
+      "kind": "event",
+      "event": "engine/item-settled",
+      "surface": false,
+      "digest": "b013b5d2693e168c5a4728e2940a856faddc0ff7f07bea5da6d9c0d5f6a45c6c",
+      "schema": {
+        "root": 0,
+        "nodes": [
+          {
+            "kind": "object",
+            "properties": [
+              {
+                "name": "data",
+                "type": 1,
+                "optional": false
+              },
+              {
+                "name": "ignorable",
+                "type": 5,
+                "optional": true
+              },
+              {
+                "name": "seq",
+                "type": 4,
+                "optional": false
+              },
+              {
+                "name": "time",
+                "type": 4,
+                "optional": false
+              },
+              {
+                "name": "type",
+                "type": 6,
+                "optional": false
+              }
+            ],
+            "indices": []
+          },
+          {
+            "kind": "object",
+            "properties": [
+              {
+                "name": "category",
+                "type": 2,
+                "optional": false
+              },
+              {
+                "name": "nativeItemId",
+                "type": 2,
+                "optional": false
+              },
+              {
+                "name": "payload",
+                "type": 3,
+                "optional": false
+              },
+              {
+                "name": "revision",
+                "type": 4,
+                "optional": false
+              }
+            ],
+            "indices": []
+          },
+          {
+            "kind": "primitive",
+            "type": "string"
+          },
+          {
+            "kind": "opaque",
+            "reason": "unknown"
+          },
+          {
+            "kind": "primitive",
+            "type": "number"
+          },
+          {
+            "kind": "literal",
+            "value": true
+          },
+          {
+            "kind": "literal",
+            "value": "engine/item-settled"
+          }
+        ]
+      }
+    },
+    {
+      "key": "event:engine/turn-settled",
+      "kind": "event",
+      "event": "engine/turn-settled",
+      "surface": false,
+      "digest": "7ce6ecf4a0154e5e5df263dda979f54979cbf0490aaf1a3b4ee7c47fc9402f8e",
+      "schema": {
+        "root": 0,
+        "nodes": [
+          {
+            "kind": "object",
+            "properties": [
+              {
+                "name": "data",
+                "type": 1,
+                "optional": false
+              },
+              {
+                "name": "ignorable",
+                "type": 3,
+                "optional": true
+              },
+              {
+                "name": "seq",
+                "type": 4,
+                "optional": false
+              },
+              {
+                "name": "time",
+                "type": 4,
+                "optional": false
+              },
+              {
+                "name": "type",
+                "type": 5,
+                "optional": false
+              }
+            ],
+            "indices": []
+          },
+          {
+            "kind": "object",
+            "properties": [
+              {
+                "name": "outcome",
+                "type": 2,
+                "optional": false
+              },
+              {
+                "name": "turnId",
+                "type": 2,
+                "optional": false
+              }
+            ],
+            "indices": []
+          },
+          {
+            "kind": "primitive",
+            "type": "string"
+          },
+          {
+            "kind": "literal",
+            "value": true
+          },
+          {
+            "kind": "primitive",
+            "type": "number"
+          },
+          {
+            "kind": "literal",
+            "value": "engine/turn-settled"
+          }
+        ]
+      }
+    }
+  ],
+  "types": []
+}

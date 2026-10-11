@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-10-08-implied-default-reasoning-effort.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-10-08-implied-default-reasoning-effort.md
+/agent-note-an-unnamed-reasoning-effort-resolves-to-the-offered-high-or-xhigh-level:
+  en: f4d31fd080fd905d
+  zh: ce09d1f84e88d13e
+/agent-note-an-unnamed-reasoning-effort-resolves-to-the-offered-high-or-xhigh-level/problem:
+  en: d8fbdd6bf371d6b6
+  zh: fdd89d46d407caef
+/agent-note-an-unnamed-reasoning-effort-resolves-to-the-offered-high-or-xhigh-level/decision:
+  en: faac10153dd4e4aa
+  zh: e2f5cf4b2d5840c8
+/agent-note-an-unnamed-reasoning-effort-resolves-to-the-offered-high-or-xhigh-level/alternatives-considered:
+  en: 2472dcec4b292e1a
+  zh: 417e0dd8e05b7faf
+/agent-note-an-unnamed-reasoning-effort-resolves-to-the-offered-high-or-xhigh-level/consequences:
+  en: 57feae671c55fc99
+  zh: 59180271b5d7e1c3

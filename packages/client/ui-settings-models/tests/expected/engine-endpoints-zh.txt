@@ -1,0 +1,15 @@
+{
+  "fields": [
+    {
+      "label": "Claude Code API 地址",
+      "placeholder": "未配置",
+      "value": ""
+    },
+    {
+      "label": "Codex API 地址",
+      "placeholder": "未配置",
+      "value": ""
+    }
+  ],
+  "text": "Claude Code API 地址配置此地址后，该引擎可选择此厂商。使用该厂商的 API 密钥。Codex API 地址配置此地址后，该引擎可选择此厂商。使用该厂商的 API 密钥。"
+}

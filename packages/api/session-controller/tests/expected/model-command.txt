@@ -1,0 +1,27 @@
+[
+  {
+    "type": "command/run",
+    "name": "model",
+    "args": ""
+  },
+  {
+    "type": "command/done",
+    "kind": "success",
+    "text": "/model [provider] <model>\np a"
+  },
+  {
+    "type": "command/run",
+    "name": "model",
+    "args": " b"
+  },
+  {
+    "type": "model/selection",
+    "provider": "p",
+    "model": "b"
+  },
+  {
+    "type": "command/done",
+    "kind": "success",
+    "text": "p b"
+  }
+]

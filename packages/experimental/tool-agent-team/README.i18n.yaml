@@ -1,0 +1,82 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/tool-agent-team/README.md
+/:
+  en: e3790770a5da94ae
+  zh: bfdb9be98d280bcc
+/deepseek-ai-dsh-experimental-tool-agent-team:
+  en: 0b01a243291821bc
+  zh: 0dadd38d709ae9bd
+/deepseek-ai-dsh-experimental-tool-agent-team/summary:
+  en: 77b5959e895a9ed6
+  zh: 6b687a16f44fe381
+/deepseek-ai-dsh-experimental-tool-agent-team/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/deepseek-ai-dsh-experimental-tool-agent-team/use-this-package:
+  en: 09e2cdfb7f0425c2
+  zh: f9d5cc003d452762
+/deepseek-ai-dsh-experimental-tool-agent-team/use-this-package/when-to-choose-it:
+  en: 5261677934ea6e71
+  zh: a8bafd94d2b293ec
+/deepseek-ai-dsh-experimental-tool-agent-team/use-this-package/smallest-working-example:
+  en: 9af650a79711b3b3
+  zh: 2930360011b544e0
+/deepseek-ai-dsh-experimental-tool-agent-team/use-this-package/what-the-model-can-do:
+  en: e4b4b4044056453a
+  zh: a3704e88a9c2a6db
+/deepseek-ai-dsh-experimental-tool-agent-team/use-this-package/what-success-and-failure-look-like:
+  en: a65ca26d7a52a20f
+  zh: 57a9b2fffea57ea5
+/deepseek-ai-dsh-experimental-tool-agent-team/understand-the-implementation:
+  en: 3952eb1d9de1f988
+  zh: 789d51b88f41b710
+/deepseek-ai-dsh-experimental-tool-agent-team/understand-the-implementation/design-philosophy:
+  en: 445806c13f887a09
+  zh: 8b2b67044abfd65a
+/deepseek-ai-dsh-experimental-tool-agent-team/understand-the-implementation/source-map:
+  en: 489745669c0c8d49
+  zh: 09cdbb674ece9b6d
+/deepseek-ai-dsh-experimental-tool-agent-team/understand-the-implementation/policy-and-tools:
+  en: b86c6c650050ae7a
+  zh: df6d8fbeeb9ac7e6
+/deepseek-ai-dsh-experimental-tool-agent-team/understand-the-implementation/scoped-registration-and-teardown:
+  en: c2b29f27a74c02c0
+  zh: 026f2ef93dd604d8
+/deepseek-ai-dsh-experimental-tool-agent-team/further-exploration:
+  en: 4cde96d9b184d1b0
+  zh: fedae651acb7301f
+/deepseek-ai-dsh-experimental-tool-agent-team/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/deepseek-ai-dsh-experimental-tool-agent-team/model-experience/teammate-model-and-launch-tools:
+  en: 77ad3f279fecd6fd
+  zh: 6cfe04ecca32d899
+/deepseek-ai-dsh-experimental-tool-agent-team/model-experience/teammate-model-and-launch-tools/what-the-model-sees:
+  en: e57f3e593982ccfc
+  zh: 3959b2ba4b379b83
+/deepseek-ai-dsh-experimental-tool-agent-team/model-experience/teammate-model-and-launch-tools/token-effect:
+  en: ddcde67e4c8a59a4
+  zh: 7dd06f95cc809845
+/deepseek-ai-dsh-experimental-tool-agent-team/model-experience/teammate-model-and-launch-tools/kv-cache-effect:
+  en: b8704ade31edfa03
+  zh: 79f3648233aae8e3
+/deepseek-ai-dsh-experimental-tool-agent-team/model-experience/team-policy-and-tools:
+  en: 8e1e365ff3b0dfb2
+  zh: c6c91fbf1e1df934
+/deepseek-ai-dsh-experimental-tool-agent-team/model-experience/team-policy-and-tools/what-the-model-sees:
+  en: e3ea38816b99b0de
+  zh: 8ab8fc146da52b13
+/deepseek-ai-dsh-experimental-tool-agent-team/model-experience/team-policy-and-tools/token-effect:
+  en: fe314af98a2130b8
+  zh: ea89cb40dd11d57c
+/deepseek-ai-dsh-experimental-tool-agent-team/model-experience/team-policy-and-tools/kv-cache-effect:
+  en: cba54e491b29b664
+  zh: 288015d4794998f9
+/deepseek-ai-dsh-experimental-tool-agent-team/known-limitations-and-deferred-work:
+  en: b34fc0574321c6c8
+  zh: 247425b8a9210f90
+/deepseek-ai-dsh-experimental-tool-agent-team/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

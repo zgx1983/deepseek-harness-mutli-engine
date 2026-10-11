@@ -1,0 +1,28 @@
+# Bilingual-pair consistency record for 2026-10-07-team-controlled-scheduling.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/persistence-changes/2026-10-07-team-controlled-scheduling.md
+/:
+  en: 3d5a424ae7d7e46b
+  zh: c22a8e4a62d8cc1a
+/2026-10-07-team-controlled-scheduling:
+  en: 61d7c504c0aa1b09
+  zh: 4e9e1efb705c6e73
+/2026-10-07-team-controlled-scheduling/summary:
+  en: e461dd4f801f8a37
+  zh: 65ec41e94ecb0ea2
+/2026-10-07-team-controlled-scheduling/table-of-contents:
+  en: 6cf314a069ceb451
+  zh: 9adff678e9ecab3b
+/2026-10-07-team-controlled-scheduling/declaration:
+  en: 6907136f28e48c90
+  zh: 02f8298485f3d8e7
+/2026-10-07-team-controlled-scheduling/compatibility:
+  en: 1bba08136f7a534b
+  zh: 048f6b3d68cb2ff7
+/2026-10-07-team-controlled-scheduling/verification:
+  en: 209220046ffa3aab
+  zh: cf2f3e1261b876a3
+/2026-10-07-team-controlled-scheduling/dev-note:
+  en: b75c8458928b72b9
+  zh: 003ba4e17b4b5269

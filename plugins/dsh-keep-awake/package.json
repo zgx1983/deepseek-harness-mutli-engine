@@ -1,0 +1,18 @@
+{
+  "name": "dsh-keep-awake",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Keeps macOS awake while any DSH Agent, terminal command, or owned background job is active.",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for local-builds.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/cookbook/local-builds.md
+/daily-local-builds:
+  en: dde99d1df0f352f9
+  zh: 90940d3cf5386980
+/daily-local-builds/build-both-applications-together:
+  en: 8a7d2b297b222723
+  zh: 4636ba975afb5625
+/daily-local-builds/keep-output-small:
+  en: 1962485239a0b68c
+  zh: 2da2421a943073a6
+/daily-local-builds/execution-steps-for-agents:
+  en: 517868179bb02086
+  zh: 420e8fe6e392e0f3
+/daily-local-builds/check-scope:
+  en: 1af92a831d574059
+  zh: 757b663a961010f6
+/daily-local-builds/current-validation-status:
+  en: f1bc9fbe8c704e8b
+  zh: 4ec1e4e87150b057

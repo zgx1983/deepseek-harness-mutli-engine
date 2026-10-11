@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write plugins/dsh-keep-awake/README.md
+/:
+  en: bf30cdd2ead6c8a0
+  zh: 235bb0b79bbe7aca
+/dsh-keep-awake:
+  en: 0ff8c685ae32232c
+  zh: 1a649181aa79a8e1
+/dsh-keep-awake/summary:
+  en: a734e06af8861b48
+  zh: 72136e0a4004c79c
+/dsh-keep-awake/table-of-contents:
+  en: b87bea112afa6f68
+  zh: 63076a93b0834f20
+/dsh-keep-awake/use-this-bundle:
+  en: ebe58b6d430e5e3b
+  zh: 52c5ccada61887dc
+/dsh-keep-awake/use-this-bundle/install-into-a-profile:
+  en: 8f34957249034152
+  zh: 342182f9357304fb
+/dsh-keep-awake/use-this-bundle/what-you-get:
+  en: ef6c6242c596a3f4
+  zh: a8cb043ed4ab6246
+/dsh-keep-awake/understand-the-implementation:
+  en: c387d04cf9695aaf
+  zh: e651eab51e20fc94
+/dsh-keep-awake/further-exploration:
+  en: f11763126dc68816
+  zh: 316758603d9d967b
+/dsh-keep-awake/model-experience:
+  en: 955d3a961d715d87
+  zh: 30fc0ca0ef2714bf
+/dsh-keep-awake/known-limitations-and-deferred-work:
+  en: d32813f15122f589
+  zh: 2a44a425192e6f19

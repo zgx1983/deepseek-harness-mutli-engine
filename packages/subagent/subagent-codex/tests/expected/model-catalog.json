@@ -1,0 +1,60 @@
+{
+  "models": [
+    {
+      "slug": "large[1m]",
+      "display_name": "Large",
+      "description": null,
+      "default_reasoning_level": null,
+      "supported_reasoning_levels": [],
+      "shell_type": "unified_exec",
+      "visibility": "list",
+      "supported_in_api": true,
+      "priority": 0,
+      "availability_nux": null,
+      "upgrade": null,
+      "base_instructions": "Use the workspace tools.",
+      "supports_reasoning_summary_parameter": false,
+      "default_reasoning_summary": "none",
+      "support_verbosity": false,
+      "default_verbosity": null,
+      "apply_patch_tool_type": null,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "context_window": 1000000,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "slug": "small",
+      "display_name": "Small",
+      "description": null,
+      "default_reasoning_level": null,
+      "supported_reasoning_levels": [],
+      "shell_type": "unified_exec",
+      "visibility": "list",
+      "supported_in_api": true,
+      "priority": 1,
+      "availability_nux": null,
+      "upgrade": null,
+      "base_instructions": "You are a coding agent. Complete the user’s task in the workspace. Use available tools when needed, respect permission decisions, and report results accurately.",
+      "supports_reasoning_summary_parameter": false,
+      "default_reasoning_summary": "none",
+      "support_verbosity": false,
+      "default_verbosity": null,
+      "apply_patch_tool_type": null,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "context_window": 200000,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ]
+    }
+  ]
+}

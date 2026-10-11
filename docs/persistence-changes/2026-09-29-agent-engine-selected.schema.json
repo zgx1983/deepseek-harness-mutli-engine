@@ -1,0 +1,91 @@
+{
+  "formatVersion": 2,
+  "roots": [
+    {
+      "key": "event:engine/selected",
+      "kind": "event",
+      "event": "engine/selected",
+      "surface": false,
+      "digest": "f4d3709de56bfcd63c54bf6e886f82356c6113fec4d2768613e2da29030dfce2",
+      "schema": {
+        "root": 0,
+        "nodes": [
+          {
+            "kind": "object",
+            "properties": [
+              {
+                "name": "data",
+                "type": 1,
+                "optional": false
+              },
+              {
+                "name": "ignorable",
+                "type": 4,
+                "optional": true
+              },
+              {
+                "name": "seq",
+                "type": 2,
+                "optional": false
+              },
+              {
+                "name": "time",
+                "type": 2,
+                "optional": false
+              },
+              {
+                "name": "type",
+                "type": 5,
+                "optional": false
+              }
+            ],
+            "indices": []
+          },
+          {
+            "kind": "object",
+            "properties": [
+              {
+                "name": "adapterVersion",
+                "type": 2,
+                "optional": true
+              },
+              {
+                "name": "engineId",
+                "type": 3,
+                "optional": false
+              },
+              {
+                "name": "environmentRef",
+                "type": 3,
+                "optional": true
+              },
+              {
+                "name": "historyMode",
+                "type": 3,
+                "optional": true
+              }
+            ],
+            "indices": []
+          },
+          {
+            "kind": "primitive",
+            "type": "number"
+          },
+          {
+            "kind": "primitive",
+            "type": "string"
+          },
+          {
+            "kind": "literal",
+            "value": true
+          },
+          {
+            "kind": "literal",
+            "value": "engine/selected"
+          }
+        ]
+      }
+    }
+  ],
+  "types": []
+}

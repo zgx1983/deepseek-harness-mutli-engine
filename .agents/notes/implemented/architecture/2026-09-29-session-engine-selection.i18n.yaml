@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-09-29-session-engine-selection.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-29-session-engine-selection.md
+/agent-note-session-engine-selection-a-log-only-event-immutable-after-dispatch:
+  en: 3b9ee8246d9b006a
+  zh: 0aec6174249d03cf
+/agent-note-session-engine-selection-a-log-only-event-immutable-after-dispatch/problem:
+  en: 6eac5f076f5b39f3
+  zh: 7d723e6a3e59d5ec
+/agent-note-session-engine-selection-a-log-only-event-immutable-after-dispatch/decision:
+  en: 27827ca9dd5442e0
+  zh: 6c82fa3603a3fb02
+/agent-note-session-engine-selection-a-log-only-event-immutable-after-dispatch/consequences:
+  en: d16f21cc7d159194
+  zh: 7d00e826a5401ff0
+/agent-note-session-engine-selection-a-log-only-event-immutable-after-dispatch/alternatives-considered:
+  en: 01a715945eb4290c
+  zh: e9213734c6a6e9d0

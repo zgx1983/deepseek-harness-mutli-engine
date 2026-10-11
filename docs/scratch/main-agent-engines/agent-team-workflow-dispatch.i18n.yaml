@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for agent-team-workflow-dispatch.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/agent-team-workflow-dispatch.md
+/agent-team-workflow-and-immediate-dispatch-improvements:
+  en: 24f31624f2d865f2
+  zh: a45d0fc356f84470
+/agent-team-workflow-and-immediate-dispatch-improvements/problem:
+  en: 20d6e7b48e578c85
+  zh: c302d6d3c716076f
+/agent-team-workflow-and-immediate-dispatch-improvements/proposal:
+  en: f9e0da16df307a53
+  zh: 1f0b4ab960c8b34f
+/agent-team-workflow-and-immediate-dispatch-improvements/proposal/1-team-workflow-create-build-a-dependency-pipeline-in-one-call:
+  en: 448b605d7d382908
+  zh: d85e38e4089515b4
+/agent-team-workflow-and-immediate-dispatch-improvements/proposal/2-dispatch-task-readiness-check-claim-forced-wake-optional-wait:
+  en: dc78cbdcbaf33303
+  zh: 329e2b25e783e6b9
+/agent-team-workflow-and-immediate-dispatch-improvements/proposal/3-send-message-and-list-agents-enhancements:
+  en: ae02d538c780bbaa
+  zh: e39153fbc4956af7
+/agent-team-workflow-and-immediate-dispatch-improvements/alternatives:
+  en: e7d5977843bf101e
+  zh: e35d99161c2a0fcd
+/agent-team-workflow-and-immediate-dispatch-improvements/alternatives/why-not-make-the-agent-team-service-event-driven-directly:
+  en: 1a9867ab9cc01e44
+  zh: 8553ec9b9982a27d
+/agent-team-workflow-and-immediate-dispatch-improvements/alternatives/why-not-add-team-task-subscribe:
+  en: d432b22effeaeba8
+  zh: f7cca53d75e0960d
+/agent-team-workflow-and-immediate-dispatch-improvements/acceptance-criteria:
+  en: 6b7c8638d08b0f35
+  zh: 20c45acb911e6b20
+/agent-team-workflow-and-immediate-dispatch-improvements/risks:
+  en: 26b18ba9c44a9100
+  zh: 82bdd5ea4d74c664
+/agent-team-workflow-and-immediate-dispatch-improvements/open-questions:
+  en: 110e88ab790e8550
+  zh: 19b0f8625ae46181

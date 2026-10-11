@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for guide.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/upgrade-guide/v0.2.0-rc.2/assistant-task-center/guide.md
+/:
+  en: c79f50bd53b15434
+  zh: 5bb554581454a860
+/personal-assistant-hierarchical-task-workspace-and-the-v2-storage:
+  en: f1f1b1307c470388
+  zh: fa0bc99b7ece68eb
+/personal-assistant-hierarchical-task-workspace-and-the-v2-storage/change:
+  en: b6e2ccd47032e875
+  zh: aa67f3eb79d31625
+/personal-assistant-hierarchical-task-workspace-and-the-v2-storage/migration:
+  en: aa13f14482777150
+  zh: 867763bb263dae30

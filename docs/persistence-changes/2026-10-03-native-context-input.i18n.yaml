@@ -1,0 +1,28 @@
+# Bilingual-pair consistency record for 2026-10-03-native-context-input.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/persistence-changes/2026-10-03-native-context-input.md
+/:
+  en: 3d5a424ae7d7e46b
+  zh: c22a8e4a62d8cc1a
+/2026-10-03-native-context-input:
+  en: 61b5e753f5acf874
+  zh: 3200a69bac357b53
+/2026-10-03-native-context-input/summary:
+  en: 8097961a75853922
+  zh: 43f4d48ecdf254e3
+/2026-10-03-native-context-input/table-of-contents:
+  en: 6cf314a069ceb451
+  zh: 9adff678e9ecab3b
+/2026-10-03-native-context-input/declaration:
+  en: 6907136f28e48c90
+  zh: 02f8298485f3d8e7
+/2026-10-03-native-context-input/compatibility:
+  en: 4d79061a85a1181d
+  zh: 2cde184015b8a227
+/2026-10-03-native-context-input/verification:
+  en: 3de5115036f93fd3
+  zh: a966be50837b30c1
+/2026-10-03-native-context-input/dev-note:
+  en: b75c8458928b72b9
+  zh: 003ba4e17b4b5269

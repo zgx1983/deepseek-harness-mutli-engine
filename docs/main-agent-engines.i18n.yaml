@@ -1,0 +1,64 @@
+# Bilingual-pair consistency record for main-agent-engines.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/main-agent-engines.md
+/main-conversation-engines-implementation-and-migration-reference:
+  en: 744b729c10a75823
+  zh: 97977ff1c11f7346
+/main-conversation-engines-implementation-and-migration-reference/summary:
+  en: 6aa630c590c2f4d2
+  zh: 6e951b3a0aecde37
+/main-conversation-engines-implementation-and-migration-reference/contents:
+  en: dd65e72ccb43e3c0
+  zh: aafe49bb60ee50d5
+/main-conversation-engines-implementation-and-migration-reference/ownership-and-entry-points:
+  en: 6789d7c3b9c4104c
+  zh: a5c0d7809d7790d2
+/main-conversation-engines-implementation-and-migration-reference/feature-lookup:
+  en: b5998ec057541272
+  zh: 4d01f40d86d984ae
+/main-conversation-engines-implementation-and-migration-reference/end-to-end-flow:
+  en: cdac85d5cca1efeb
+  zh: 055bfa6ebb0ff89c
+/main-conversation-engines-implementation-and-migration-reference/claude-execution:
+  en: dbb938dc2cc1b0b9
+  zh: e9b5d326a064bc33
+/main-conversation-engines-implementation-and-migration-reference/codex-execution:
+  en: ba2258e178eedb53
+  zh: 48e70bc3f9db32c3
+/main-conversation-engines-implementation-and-migration-reference/persistence-and-recovery:
+  en: 43e8f4c3a91a53d3
+  zh: 78af25c4537aa48f
+/main-conversation-engines-implementation-and-migration-reference/file-inventory:
+  en: 94bdb721d49865a8
+  zh: 15b69c1fafac051b
+/main-conversation-engines-implementation-and-migration-reference/migration-procedure:
+  en: 77a1641c6c3277be
+  zh: 27632aca6835b818
+/main-conversation-engines-implementation-and-migration-reference/verification-and-diagnosis:
+  en: 4809608d56bada79
+  zh: a15ff10005c51170
+/main-conversation-engines-implementation-and-migration-reference/further-exploration:
+  en: 30211d6559213e7a
+  zh: 7404ba675f4b04a5
+/main-conversation-engines-implementation-and-migration-reference/native-child-status-implementation:
+  en: e3a758f15a74d2c9
+  zh: 174f1a01d721e40c
+/main-conversation-engines-implementation-and-migration-reference/child-observation-and-continuation-lookup:
+  en: 696ac2dcda640b12
+  zh: dac2dece72948bc5
+/main-conversation-engines-implementation-and-migration-reference/failure-handling-and-migration-dependencies:
+  en: c8c15cff71284f0e
+  zh: ecca748464640f37
+/main-conversation-engines-implementation-and-migration-reference/acceptance-scope-for-child-and-recovery-paths:
+  en: 38d3e2b319b47710
+  zh: a0febada2ad338f4
+/main-conversation-engines-implementation-and-migration-reference/commands-context-occupancy-and-images:
+  en: ad8636b8e9605b7c
+  zh: 486288672085385e
+/main-conversation-engines-implementation-and-migration-reference/engine-reasoning-mappings:
+  en: a3febd92fdbca997
+  zh: 72f4972520860505
+/main-conversation-engines-implementation-and-migration-reference/engine-reasoning-mappings/implementation-lookup:
+  en: a88fa719bb029468
+  zh: a6efbc82fc9ca991

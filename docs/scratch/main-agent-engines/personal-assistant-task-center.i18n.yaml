@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for personal-assistant-task-center.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/personal-assistant-task-center.md
+/personal-assistant-sidebar-and-hierarchical-task-design:
+  en: 12d618e3ed410525
+  zh: 9ef42e6b4ff498dc
+/personal-assistant-sidebar-and-hierarchical-task-design/table-of-contents:
+  en: 9e312dbe01327d80
+  zh: c688fc26497e08f2
+/personal-assistant-sidebar-and-hierarchical-task-design/summary-and-scope:
+  en: 0788084048b09933
+  zh: 6df71b3ef523cbff
+/personal-assistant-sidebar-and-hierarchical-task-design/current-implementation-and-gaps:
+  en: 121c181dbaf61ae6
+  zh: 976fd31e2495a7a1
+/personal-assistant-sidebar-and-hierarchical-task-design/page-structure-and-navigation:
+  en: 2372fd9974f77e15
+  zh: 0fe092a7884a2425
+/personal-assistant-sidebar-and-hierarchical-task-design/overview-and-task-cards:
+  en: 3ce900aaf7c9ece5
+  zh: 4b798de3ab3c6986
+/personal-assistant-sidebar-and-hierarchical-task-design/parent-child-tasks-and-execution-model:
+  en: 28d9ea89c1d11e12
+  zh: 56e38ec5024a447a
+/personal-assistant-sidebar-and-hierarchical-task-design/states-dependencies-and-acceptance:
+  en: e60f3f387f14b478
+  zh: a22c671d9d2e18da
+/personal-assistant-sidebar-and-hierarchical-task-design/task-details-and-actions:
+  en: 0b349218be571c38
+  zh: ddc902c3fc290113
+/personal-assistant-sidebar-and-hierarchical-task-design/complete-lists-history-and-search:
+  en: cb956fc6bbeeb07a
+  zh: 029ad4c8cc6275ba
+/personal-assistant-sidebar-and-hierarchical-task-design/pagination-and-concurrent-consistency:
+  en: 657e9a28dfd1ab32
+  zh: e10df9630c01d5ac
+/personal-assistant-sidebar-and-hierarchical-task-design/data-structures-and-persistence:
+  en: 14b4e3f26dd8a7d1
+  zh: 87b242651d2d0919
+/personal-assistant-sidebar-and-hierarchical-task-design/query-and-mutation-interfaces:
+  en: 8ec07eadac96eb55
+  zh: 460929527415df81
+/personal-assistant-sidebar-and-hierarchical-task-design/storage-queries-and-migration:
+  en: 2cee7786d5b540e4
+  zh: c6c27c3b8a6ab58f
+/personal-assistant-sidebar-and-hierarchical-task-design/refresh-responsive-layout-and-accessibility:
+  en: e596c2397b319f75
+  zh: fe1144da4e838a5c
+/personal-assistant-sidebar-and-hierarchical-task-design/implementation-order-and-ownership:
+  en: 65f78d2536f42c63
+  zh: 66cfa892b3db0d4e
+/personal-assistant-sidebar-and-hierarchical-task-design/acceptance-matrix-and-performance-targets:
+  en: c34ed358c888ed8f
+  zh: aa31a5e2500782e4
+/personal-assistant-sidebar-and-hierarchical-task-design/dev-note-and-pre-implementation-decisions:
+  en: ec40adf932f90944
+  zh: bbb582e588e44bc2

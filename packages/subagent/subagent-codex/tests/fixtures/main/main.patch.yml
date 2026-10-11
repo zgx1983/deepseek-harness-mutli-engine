@@ -1,0 +1,19 @@
+- id: headless-startup
+  disabled: true
+- id: headless-runner
+  disabled: true
+- id: llm-deepseek
+  config:
+    codexURL: !!js process.env.DSH_CODEX_ACCEPTANCE_URL
+    apiKeyEnv: DSH_CODEX_ACCEPTANCE_KEY
+- insert:
+    - id: main-engine-codex
+      name: '@deepseek-ai/dsh-subagent-codex/startup'
+      config:
+        startupTimeoutMs: 30000
+        interruptTimeoutMs: 10000
+        providers:
+          deepseek-official:
+            requestMaxRetries: 0
+            streamMaxRetries: 0
+            supportsWebsockets: false

@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for guide.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/upgrade-guide/v0.2.0-rc.2/personal-assistant-dashboard/guide.md
+/:
+  en: c76f94d6029d9f68
+  zh: 2e47ed3b94296ae1
+/personal-assistant-becomes-a-project-dashboard:
+  en: 76593827971b4272
+  zh: 722f31f70a2c6e80
+/personal-assistant-becomes-a-project-dashboard/change:
+  en: 8096c5c396c13611
+  zh: 7ecad6f12e6e7771
+/personal-assistant-becomes-a-project-dashboard/migration:
+  en: 743a141fa0bae890
+  zh: 353c82d0437b0684
+/personal-assistant-becomes-a-project-dashboard/migration/session-archival:
+  en: 485767ac443462d8
+  zh: 4a4fccbacae5d283

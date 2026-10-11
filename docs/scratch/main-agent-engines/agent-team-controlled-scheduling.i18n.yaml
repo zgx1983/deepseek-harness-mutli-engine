@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for agent-team-controlled-scheduling.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/scratch/main-agent-engines/agent-team-controlled-scheduling.md
+/agent-team-scheduling-execution-validation-and-messaging-design:
+  en: 9be8fdb0d20a49e0
+  zh: 4a382277664c065a
+/agent-team-scheduling-execution-validation-and-messaging-design/table-of-contents:
+  en: 66d8df497650d2c2
+  zh: 44f63ecef65aba7c
+/agent-team-scheduling-execution-validation-and-messaging-design/summary:
+  en: 3909ba2cd49b4139
+  zh: 051c91544d532999
+/agent-team-scheduling-execution-validation-and-messaging-design/existing-capabilities-and-related-designs:
+  en: 7a9c803acf72c3b2
+  zh: a3eadf7c71298872
+/agent-team-scheduling-execution-validation-and-messaging-design/responsibilities-and-execution-flow:
+  en: a74ccce1e9498a0e
+  zh: dbf7233c9c019739
+/agent-team-scheduling-execution-validation-and-messaging-design/plans-dependencies-and-completion-conditions:
+  en: 04a882cbc383a543
+  zh: 5178c6aaf221b88d
+/agent-team-scheduling-execution-validation-and-messaging-design/unified-startup-validation-and-atomic-claims:
+  en: fdc94e591d0077eb
+  zh: 12fa0e7e2533ca3f
+/agent-team-scheduling-execution-validation-and-messaging-design/messages-assignments-and-stopping:
+  en: f4da496ef7592ae7
+  zh: f87bc8ca4caf9f2a
+/agent-team-scheduling-execution-validation-and-messaging-design/delivery-by-member-state:
+  en: 63039fc25d9be3ef
+  zh: 50c1138e9ad358e1
+/agent-team-scheduling-execution-validation-and-messaging-design/execution-authorization-and-engine-enforcement:
+  en: d9a60b1fe2f63dce
+  zh: cbf7260096583994
+/agent-team-scheduling-execution-validation-and-messaging-design/automatic-scheduling-recovery-and-observability:
+  en: abcb8c07a8774511
+  zh: 10bd63ff190d71cd
+/agent-team-scheduling-execution-validation-and-messaging-design/implementation-compatibility-and-acceptance:
+  en: 9e57a31c57a9dd68
+  zh: 925021a533480f36

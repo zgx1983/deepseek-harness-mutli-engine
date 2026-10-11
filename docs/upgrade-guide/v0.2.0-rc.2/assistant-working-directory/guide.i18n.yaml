@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for guide.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/upgrade-guide/v0.2.0-rc.2/assistant-working-directory/guide.md
+/:
+  en: a7d31f759201e0fd
+  zh: acfec6c180d15656
+/personal-assistant-tasks-move-to-sqlite-storage-with-a-fixed-working-directory:
+  en: 61f2f47b4a642a15
+  zh: ee6d65c31e65200a
+/personal-assistant-tasks-move-to-sqlite-storage-with-a-fixed-working-directory/change:
+  en: 1a46647b0b823d84
+  zh: b6682df7613678f2
+/personal-assistant-tasks-move-to-sqlite-storage-with-a-fixed-working-directory/migration:
+  en: 9850983ba9014502
+  zh: e637c09a6c78d137

@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-10-02-engine-native-instruction-loading.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/feature/2026-10-02-engine-native-instruction-loading.md
+/agent-note-engine-sessions-load-the-host-s-instruction-files-like-the-native-clis:
+  en: 8d99e477808d9d7f
+  zh: 0f0c7e1cf589fc10
+/agent-note-engine-sessions-load-the-host-s-instruction-files-like-the-native-clis/problem:
+  en: 21d92a7286a3291e
+  zh: 0bdc7da790976aca
+/agent-note-engine-sessions-load-the-host-s-instruction-files-like-the-native-clis/decision:
+  en: 28edb5898abaa0ff
+  zh: 9304b624d54f1430
+/agent-note-engine-sessions-load-the-host-s-instruction-files-like-the-native-clis/alternatives-considered:
+  en: fd1d6fabf773ca73
+  zh: fa60cee3bfa2cad1
+/agent-note-engine-sessions-load-the-host-s-instruction-files-like-the-native-clis/consequences:
+  en: 8680f0e8e0c34e1e
+  zh: 4bc0505c918b5559
+/agent-note-engine-sessions-load-the-host-s-instruction-files-like-the-native-clis/related:
+  en: 5489ed4183b5a83c
+  zh: 40ccbfaa231f5fcf
